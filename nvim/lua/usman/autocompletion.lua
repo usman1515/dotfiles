@@ -18,33 +18,34 @@ local check_backspace = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+-- added vscode like pictograms using https://github.com/onsails/lspkind.nvim
 --   פּ ﯟ   some other good icons
 local kind_icons = {
-    Text = "󰊄",
-    Method = "m",
+    Text = "󰉿",
+    Method = "󰆧",
     Function = "󰊕",
-    Constructor = "",
-    Field = "",
-    Variable = "󰫧",
-    Class = "",
+    Constructor = "",
+    Field = "󰜢",
+    Variable = "󰀫",
+    Class = "󰠱",
     Interface = "",
     Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
+    Property = "󰜢",
+    Unit = "󰑭",
+    Value = "󰎠",
     Enum = "",
-    Keyword = "󰌆",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "󰈇",
+    Folder = "󰉋",
     EnumMember = "",
-    Constant = "",
-    Struct = "",
+    Constant = "󰏿",
+    Struct = "󰙅",
     Event = "",
-    Operator = "",
-    TypeParameter = "󰉺",
+    Operator = "󰆕",
+    TypeParameter = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
