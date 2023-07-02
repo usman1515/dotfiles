@@ -46,6 +46,14 @@ return require('packer').startup(function(use)
 
 
 
+    -- colorschemes
+    use "bluz71/vim-nightfly-colors" --keep
+    use "EdenEast/nightfox.nvim" --keep
+    use {"catppuccin/nvim", as="catppuccin"} -- keep
+    use "Mofiqul/vscode.nvim" -- keep
+    use "folke/tokyonight.nvim" -- keep
+    use "crusoexia/vim-monokai" --keep
+    use "loctvl842/monokai-pro.nvim" -- keep must - best monokai
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
