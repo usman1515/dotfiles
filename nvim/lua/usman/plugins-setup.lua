@@ -43,6 +43,17 @@ return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"    -- Have packer manage itself
     use "nvim-lua/popup.nvim"       -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim"     -- Useful lua functions used in lots of plugins
+    -- autocompletion
+    use "hrsh7th/nvim-cmp"                  -- completion engine plugin
+    use "hrsh7th/cmp-buffer"                -- nvim-cmp source for buffer completions
+    use "hrsh7th/cmp-path"                  -- nvim-cmp source for paths completions
+    use "hrsh7th/cmp-cmdline"               -- nvim-cmp source for vim command line completions
+    use "hrsh7th/cmp-nvim-lsp"              -- nvim-cmp source for nvim built-in language server client
+    use "neovim/nvim-lspconfig"             -- configs for the nvim LSP client
+    -- code snippets
+    use "L3MON4D3/LuaSnip"                  -- snippet engine
+    use "saadparwaiz1/cmp_luasnip"          -- luasnip completion source for nvim-cmp
+    use "rafamadriz/friendly-snippets"      -- preconfigured snippets for different languages
 
 
 

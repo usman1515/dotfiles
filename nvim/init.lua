@@ -3,3 +3,4 @@ require "usman.keymaps"
 
 require "usman.plugins-setup"
 require "usman.colorscheme"
+require "usman.autocompletion"
