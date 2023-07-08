@@ -53,7 +53,8 @@ return require('packer').startup(function(use)
     use "L3MON4D3/LuaSnip"                  -- snippet engine
     use "saadparwaiz1/cmp_luasnip"          -- luasnip completion source for nvim-cmp
     use "rafamadriz/friendly-snippets"      -- preconfigured snippets for different languages
-
+    -- autocomments
+    use "numToStr/Comment.nvim"             -- comment plugin for neovim
 
     -- treesitter
     use {
