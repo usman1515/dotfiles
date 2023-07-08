@@ -66,7 +66,7 @@ return require('packer').startup(function(use)
     use "nvim-treesitter/playground"        -- treesitter information in nvim
     -- bracket pairs
     use "HiPhish/rainbow-delimiters.nvim"   -- rainbow parentheses powered by treesitter
-
+    use "windwp/nvim-autopairs"             -- bracket autopairs, integrates with both cmp and treesitter
 
     -- colorschemes
     use "bluz71/vim-nightfly-colors"
