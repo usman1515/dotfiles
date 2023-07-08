@@ -49,22 +49,28 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-path"                  -- nvim-cmp source for paths completions
     use "hrsh7th/cmp-cmdline"               -- nvim-cmp source for vim command line completions
     use "hrsh7th/cmp-nvim-lsp"              -- nvim-cmp source for nvim built-in language server client
-    use "neovim/nvim-lspconfig"             -- configs for the nvim LSP client
     -- code snippets
     use "L3MON4D3/LuaSnip"                  -- snippet engine
     use "saadparwaiz1/cmp_luasnip"          -- luasnip completion source for nvim-cmp
     use "rafamadriz/friendly-snippets"      -- preconfigured snippets for different languages
 
 
-
+    -- treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
     -- colorschemes
-    use "bluz71/vim-nightfly-colors" --keep
-    use "EdenEast/nightfox.nvim" --keep
-    use {"catppuccin/nvim", as="catppuccin"} -- keep
-    use "Mofiqul/vscode.nvim" -- keep
-    use "folke/tokyonight.nvim" -- keep
-    use "crusoexia/vim-monokai" --keep
-    use "loctvl842/monokai-pro.nvim" -- keep must - best monokai
+    use "bluz71/vim-nightfly-colors"
+    use "EdenEast/nightfox.nvim"
+    use {"catppuccin/nvim", as="catppuccin"}
+    use "Mofiqul/vscode.nvim"
+    use "folke/tokyonight.nvim"
+    use "crusoexia/vim-monokai"
+    use "loctvl842/monokai-pro.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
