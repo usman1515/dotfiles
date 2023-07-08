@@ -63,6 +63,9 @@ return require('packer').startup(function(use)
             ts_update()
         end,
     }
+    use "nvim-treesitter/playground"        -- treesitter information in nvim
+
+
     -- colorschemes
     use "bluz71/vim-nightfly-colors"
     use "EdenEast/nightfox.nvim"
