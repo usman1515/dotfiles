@@ -55,6 +55,8 @@ return require('packer').startup(function(use)
     use "rafamadriz/friendly-snippets"      -- preconfigured snippets for different languages
     -- autocomments
     use "numToStr/Comment.nvim"             -- comment plugin for neovim
+    -- indentation
+    use "lukas-reineke/indent-blankline.nvim"   -- adds indentation guides to all lines (including empty lines)
 
     -- treesitter
     use {
