@@ -57,6 +57,9 @@ return require('packer').startup(function(use)
     use "numToStr/Comment.nvim"             -- comment plugin for neovim
     -- indentation
     use "lukas-reineke/indent-blankline.nvim"   -- adds indentation guides to all lines (including empty lines)
+    --git
+    use "lewis6991/gitsigns.nvim"           -- git decorations for add, removed, changed lines
+
 
     -- treesitter
     use {
