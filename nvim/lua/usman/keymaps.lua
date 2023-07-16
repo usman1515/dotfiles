@@ -52,7 +52,7 @@ keymap("n", "<leader>t0", ":tabfirst<CR>", opts)    -- go to first tab
 keymap("n", "<leader>t$", ":tablast<CR>", opts)     -- go to last tab
 
 -- tree view toggle (Lexplorer)
-keymap("n", "<leader>e", ":Lex 20<cr>", opts)
+-- keymap("n", "<leader>e", ":Lex 20<cr>", opts)       -- replace with nvim-tree
 
 -- ========================= Insert =========================
 -- Press jk fast to enter
@@ -81,3 +81,7 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- ========================= Tree File Explorer =========================
+-- tree toggle
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
