@@ -83,5 +83,18 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- ========================= Tree File Explorer =========================
--- tree toggle
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)           -- tree toggle
+
+-- ========================= Telescope fzf =========================
+-- telescope
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)    -- find files within pwd, respects .gitignore
+keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts)     -- find string in pwd as you type
+keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts)   -- find string under cursor in pwd
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)       -- list open buffers in current neovim instance
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)     -- list available help tags
+
+-- telescope git commands
+keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", opts)   -- list all git commits (use <cr> to checkout) ["gc" for git commits]
+keymap("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>", opts) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
+keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts)  -- list git branches (use <cr> to checkout) ["gb" for git branch]
+keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts)    -- list current changes per file with diff preview ["gs" for git status]

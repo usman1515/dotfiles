@@ -53,6 +53,9 @@ return require('packer').startup(function(use)
     use "L3MON4D3/LuaSnip"                  -- snippet engine
     use "saadparwaiz1/cmp_luasnip"          -- luasnip completion source for nvim-cmp
     use "rafamadriz/friendly-snippets"      -- preconfigured snippets for different languages
+    -- telescope
+    use "nvim-telescope/telescope.nvim"     -- highly extendable fzf. find, filter, preview, pick
+    use "nvim-telescope/telescope-media-files.nvim" -- preview media files using Ueberzug
     -- autocomments
     use "numToStr/Comment.nvim"             -- comment plugin for neovim
     -- indentation
