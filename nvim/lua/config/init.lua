@@ -17,11 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 -- example using a list of specs with the default options
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
-require("lazy").setup({
-	"folke/which-key.nvim",
-	{"folke/neoconf.nvim", cmd = "Neoconf"},
-	"folke/neodev.nvim",
-})
+-- source all plugins from plugins dir
+require("lazy").setup("plugins")
 
 -- invoke lazy package manager
-require("lazy").setup(plugins, opts)
+-- require("lazy").setup( plugins, opts)
