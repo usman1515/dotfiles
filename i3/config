@@ -178,6 +178,10 @@ bar {
         status_command i3status
 }
 
+# * ==================== My Keybingings
+# logging out
+bindsym $mod+Shift+x exec i3lock
+
 # * ==================== Colorschemes
 # using catppuccin mocha
 set $rosewater #f5e0dc
@@ -221,3 +225,4 @@ client.background        $base
 # exec_always feh --bg-scale /usr/share/backgrounds/fedora-workstation/petals_light.webp
 # my wallpapers directory
 exec_always feh --bg-scale ~/wallpapers/abstract_blue_background-wallpaper-1920x1080.jpg
+
