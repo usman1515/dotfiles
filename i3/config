@@ -37,8 +37,8 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# * start kitty as the default terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -206,7 +206,7 @@ bar {
         status_command i3status
 }
 
-# * ==================== My Keybingings
+# * ==================== My Keybindings
 # logging out
 bindsym $mod+Shift+x exec i3lock
 
