@@ -213,3 +213,11 @@ client.unfocused         $overlay0 $base $text  $rosewater $overlay0
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
+
+# * ==================== Background Wallpaper
+# using package feh to setup background
+
+# using fedora default dir
+# exec_always feh --bg-scale /usr/share/backgrounds/fedora-workstation/petals_light.webp
+# my wallpapers directory
+exec_always feh --bg-scale ~/wallpapers/abstract_blue_background-wallpaper-1920x1080.jpg
