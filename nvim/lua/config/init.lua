@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- source all files in nvim/lua/config dir
 require("config.globals")
+require("config.options")
+
 
 local plugins = "plugins"
 
