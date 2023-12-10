@@ -8,17 +8,42 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
--- example using a list of specs with the default options
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+-- source all files in nvim/lua/config dir
+require("config.globals")
 
--- source all plugins from plugins dir
-require("lazy").setup("plugins")
+local plugins = "plugins"
 
--- invoke lazy package manager
--- require("lazy").setup( plugins, opts)
+-- whichkey plugin configs
+local opts = {
+	defaults = {
+		lazy = true,
+	},
+	install = {
+		colorscheme = { "catppuccin" },
+	},
+	rtp = {
+		disabled_plugins = {
+			"gzip",
+			"matchit",
+			"matchparen",
+			"netrw",
+			"netrwPlugin",
+			"tarPlugin",
+			"tohtml",
+			"tutor",
+			"zipPlugin",
+		},
+	},
+	change_detection = {
+		notify = false,
+	},
+}
+
+-- source all plugins from plugins dir. invoke lazy package manager
+require("lazy").setup(plugins, opts)
