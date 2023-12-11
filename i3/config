@@ -103,20 +103,20 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws9 "9:  "
+set $ws10 "10: scratchpad"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
+bindsym $mod+2 workspace number $ws2; layout tabbed
 bindsym $mod+3 workspace number $ws3; layout tabbed
 bindsym $mod+4 workspace number $ws4; layout tabbed
 bindsym $mod+5 workspace number $ws5; layout tabbed
@@ -138,6 +138,23 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# * ==================== Assign workspaces to external monitor and display
+# assign a name to each monitor and screen
+set $monitor1 HDMI-A-0
+set $monitor2 eDP
+
+# can specify multiple outputs to a workspace. The first available will be used.
+workspace $ws1 output $monitor1
+workspace $ws2 output $monitor1
+workspace $ws3 output $monitor1
+workspace $ws4 output $monitor1
+workspace $ws5 output $monitor1
+workspace $ws6 output $monitor1
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor1
+workspace $ws9 output $monitor1
+workspace $ws10 output $monitor2
+
 # * ==================== open certain windows on certain workspaces
 # using package xprop to find window names and classes
 # class of any app = WM_CLASS(STRING)
@@ -145,6 +162,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # workspace 1 - thunderbird
 assign [class="thunderbird"] $ws1
 # workspace 2 - server
+assign [class="x2goclient"] $ws2
 # workspace 3 - chrome
 assign [class="Google-chrome"] $ws3
 # workspace 4 - coding
@@ -159,12 +177,9 @@ assign [class="firefox"] $ws9
 
 # * ==================== Always open following programs on startup
 exec thunderbird
+exec x2goclient
 exec google-chrome
 exec code
-
-# exec spotify
-# exec
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -200,46 +215,33 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3status -c ~/.config/i3/i3status.conf
-    tray_output primary
-    # status bar position
-    position top
-}
-
-# * ==================== My Keybindings
-# logging out
-bindsym $mod+Shift+x exec i3lock
-
 # * ==================== Colorschemes
-# using catppuccin mocha
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+# using catppuccin frappe
+set $rosewater #f2d5cf
+set $flamingo  #eebebe
+set $pink      #f4b8e4
+set $mauve     #ca9ee6
+set $red       #e78284
+set $maroon    #ea999c
+set $peach     #ef9f76
+set $green     #a6d189
+set $teal      #81c8be
+set $sky       #99d1db
+set $sapphire  #85c1dc
+set $blue      #8caaee
+set $lavender  #babbf1
+set $text      #c6d0f5
+set $subtext1  #b5bfe2
+set $subtext0  #a5adce
+set $overlay2  #949cbb
+set $overlay1  #838ba7
+set $overlay0  #737994
+set $surface2  #626880
+set $surface1  #51576d
+set $surface0  #414559
+set $base      #303446
+set $mantle    #292c3c
+set $crust     #232634
 
 # target                 title     bg    text   indicator  border
 client.focused           $lavender $base $text  $rosewater $lavender
@@ -248,6 +250,36 @@ client.unfocused         $overlay0 $base $text  $rosewater $overlay0
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
+
+# * ==================== i3 Status Bar
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status -c ~/.config/i3/i3status.conf
+    tray_output primary
+    # status bar position
+    position top
+	workspace_buttons yes
+	# height 27
+    # font
+    font pango:CaskaydiaCove Nerd Font Regular 15
+    # i3 status bar colors
+    colors {
+        separator $overlay0
+        background $base
+        statusline $text
+        focused_workspace $lavender $base $text
+        active_workspace $overlay0 $base $text
+        inactive_workspace $overlay0 $base $text
+        urgent_workspace $peach $base $peach
+    }
+}
+
+# * ==================== My Keybindings
+# logging out
+bindsym $mod+Shift+x exec i3lock
+# move workspace to primary display
+bindsym $mod+Shift+m exec --no-startup-id send_to_primary
 
 # * ==================== Background Wallpaper
 # using package feh to setup background
@@ -260,3 +292,11 @@ exec_always feh --bg-scale ~/wallpapers/abstract_blue_background-wallpaper-1920x
 # * ==================== Transition Effects
 # using picom for faze and transparency effects between workspaces and terminals
 exec_always picom -f
+
+# * ==================== Setup screens and monitor displays
+# using package arandr to setup displays
+exec_always xrandr \
+    --output eDP --mode 1920x1080 --pos 2560x0 --rotate normal \
+    --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+    --output DisplayPort-0 --off \
+    --output DisplayPort-1 --off
