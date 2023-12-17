@@ -38,7 +38,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # * start kitty as the default terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -103,15 +103,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3:  "
-set $ws4 "4:  "
-set $ws5 "5:  "
+set $ws1 "1:    "
+set $ws2 "2: 󰒋 "
+set $ws3 "3:   "
+set $ws4 "4: 󰨞  "
+set $ws5 "5:   "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
-set $ws9 "9:  "
+set $ws9 "9: "
 set $ws10 "10: scratchpad"
 
 # switch to workspace
@@ -153,7 +153,7 @@ workspace $ws6 output $monitor1
 workspace $ws7 output $monitor1
 workspace $ws8 output $monitor1
 workspace $ws9 output $monitor1
-workspace $ws10 output $monitor2
+workspace $ws10 output $monitor1
 
 # * ==================== open certain windows on certain workspaces
 # using package xprop to find window names and classes
@@ -161,23 +161,27 @@ workspace $ws10 output $monitor2
 
 # workspace 1 - thunderbird
 assign [class="thunderbird"] $ws1
+assign [class="Skype"] $ws1
 # workspace 2 - server
 assign [class="x2goclient"] $ws2
+assign [class="Com.cisco.secureclient.gui"] $ws2
 # workspace 3 - chrome
 assign [class="Google-chrome"] $ws3
+assign [class="firefox"] $ws3
 # workspace 4 - coding
 assign [class="Code"] $ws4
 # workspace 5 - files
 # workspace 6 -
 # workspace 7
 # workspace 8
-# workspace 9 - firefox
-assign [class="firefox"] $ws9
+# workspace 9
 # workspace 10
 
 # * ==================== Always open following programs on startup
 exec thunderbird
+exec Skype
 exec x2goclient
+exec Com.cisco.secureclient.gui
 exec google-chrome
 exec code
 
@@ -295,8 +299,16 @@ exec_always picom -f
 
 # * ==================== Setup screens and monitor displays
 # using package arandr to setup displays
-exec_always xrandr \
-    --output eDP --mode 1920x1080 --pos 2560x0 --rotate normal \
+
+# layout 1 - with monitor and display
+# exec_always xrandr \
+#     --output eDP --mode 1920x1080 --pos 2560x0 --rotate normal \
+#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-0 --off \
+#     --output DisplayPort-1 --off
+
+# layout 2 - with monitor only
+exec_always xrandr --output eDP --off \
     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
     --output DisplayPort-0 --off \
     --output DisplayPort-1 --off
