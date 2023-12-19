@@ -54,7 +54,10 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id dmenu_run
 
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec --no-startup-id rofi -show run
+# opens run tab in dmenu by default
+# bindsym $mod+d exec --no-startup-id rofi -show run
+# opens apps tab in dmenu by default
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
 # change focus
 bindsym $mod+j focus left
@@ -192,7 +195,7 @@ exec x2goclient
 exec Com.cisco.secureclient.gui
 exec google-chrome
 exec code
-exec Spotify
+exec spotify
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -334,8 +337,23 @@ exec_always picom -f
 #     --output DisplayPort-0 --off \
 #     --output DisplayPort-1 --off
 
-# layout 2 - with monitor only
-exec_always xrandr --output eDP --off \
-    --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
-    --output DisplayPort-0 --off \
+# layout 2 - with monitor only connected directly
+# exec_always xrandr --output eDP --off \
+#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-0 --off \
+#     --output DisplayPort-1 --off
+
+# layout 3 - with monitor only connected via USB C hub
+exec_always xrandr \
+    --output eDP --off \
+    --output HDMI-A-0 --off \
+    --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
     --output DisplayPort-1 --off
+
+# * ==================== Window gaps
+gaps inner 5
+gaps outer 5
+# only enable gaps on a workspace when there is at least one container
+smart_gaps on
+# only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
