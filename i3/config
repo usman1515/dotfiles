@@ -23,6 +23,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# volume icon
+exec --no-startup-id volumeicon
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -35,6 +37,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrevious exec playerctl previous
+
+# Use light to adjust screen brightness controls.
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -111,11 +117,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:    "
+set $ws1 "1:   󰒱  "
 set $ws2 "2: 󰒋 "
 set $ws3 "3:   "
 set $ws4 "4: 󰨞  "
-set $ws5 "5:   "
+set $ws5 "5:    "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
@@ -170,9 +176,11 @@ workspace $ws10 output $monitor1
 # workspace 1 - email and chat clients
 assign [class="thunderbird"] $ws1
 assign [class="Skype"] $ws1
+assign [class="Slack"] $ws1
 assign [class="Whatsapp-for-linux"] $ws1
 # workspace 2 - server
 assign [class="x2goclient"] $ws2
+assign [class="X2GoAgent"] $ws2
 assign [class="Com.cisco.secureclient.gui"] $ws2
 # workspace 3 - internet browsers
 assign [class="Google-chrome"] $ws3
@@ -191,11 +199,12 @@ assign [class="Spotify"] $ws10
 # * ==================== Always open following programs on startup
 exec thunderbird
 exec Skype
+exec slack
 exec x2goclient
 exec Com.cisco.secureclient.gui
 exec google-chrome
 exec code
-exec spotify
+exec Spotify
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -233,16 +242,17 @@ bindsym $mod+r mode "resize"
 
 # * ==================== Colorschemes
 # transparency colors
-set $transpareny_100    #FF
-set $transpareny_90     #E6
-set $transpareny_80     #CC
-set $transpareny_70     #B3
+# Link: https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+set $transpareny_100    #ff
+set $transpareny_90     #e6
+set $transpareny_80     #cc
+set $transpareny_70     #b3
 set $transpareny_60     #99
 set $transpareny_50     #80
 set $transpareny_40     #66
-set $transpareny_30     #4D
+set $transpareny_30     #4d
 set $transpareny_20     #33
-set $transpareny_10     #1A
+set $transpareny_10     #1a
 set $transpareny_0      #00
 
 # using catppuccin frappe
