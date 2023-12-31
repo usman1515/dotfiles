@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- source all files in nvim/lua/config dir
 require("config.globals")
 require("config.options")
+require("config.keymaps")
 
 
 local plugins = "plugins"
@@ -34,8 +35,8 @@ local opts = {
 			"gzip",
 			"matchit",
 			"matchparen",
-			"netrw",
-			"netrwPlugin",
+			"netrw",		-- for nvim tree
+			"netrwPlugin",	-- for nvim tree
 			"tarPlugin",
 			"tohtml",
 			"tutor",
