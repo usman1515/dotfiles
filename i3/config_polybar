@@ -117,16 +117,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:   󰒱  "
-set $ws2 "2: 󰒋 "
-set $ws3 "3:   "
-set $ws4 "4: 󰨞  "
-set $ws5 "5:    "
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
-set $ws10 "10:  "
+set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -293,31 +293,8 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-# * ==================== i3 Status Bar
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3status -c ~/.config/i3/i3status.conf
-    tray_output primary
-    # status bar position
-    position top
-	workspace_buttons yes
-	# height 27
-    # font
-    font pango:CaskaydiaCove Nerd Font Regular 15
-    # i3bar transparency
-    # i3bar_command i3bar --transparency
-    # i3 status bar colors
-    colors {
-        separator $overlay0
-        background $base
-        statusline $text
-        focused_workspace $lavender $base $text
-        active_workspace $overlay0 $base $text
-        inactive_workspace $overlay0 $base $text
-        urgent_workspace $peach $base $peach
-    }
-}
+# * ==================== Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # * ==================== My Keybindings
 # logging out
@@ -367,3 +344,9 @@ gaps outer 5
 smart_gaps on
 # only enable outer gaps when there is exactly one container
 smart_gaps inverse_outer
+# move window title to center
+title_align center
+# enable window icons for all windows
+for_window [all] title_window_icon on
+# enable window icons for all windows with extra horizontal padding
+for_window [all] title_window_icon padding 3px
