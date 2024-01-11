@@ -55,3 +55,8 @@ keymap("n", "<leader>tn", ":tabn<CR>", opts)        -- go to next tab
 keymap("n", "<leader>tp", ":tabp<CR>", opts)        -- go to previous tab
 keymap("n", "<leader>t0", ":tabfirst<CR>", opts)    -- go to first tab
 keymap("n", "<leader>t$", ":tablast<CR>", opts)     -- go to last tab
+
+-- ========================= Visual Mode =========================
+-- * Indentation:
+keymap("v", "<", "<gv", opts)   -- indent right
+keymap("v", ">", ">gv", opts)   -- indent left
