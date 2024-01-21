@@ -117,10 +117,10 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:   󰒱  "
-set $ws2 "2: 󰒋 "
-set $ws3 "3:   "
-set $ws4 "4: 󰨞  "
+set $ws1 "1: 󰒋 "
+set $ws2 "2: 󰨞  "
+set $ws3 "3:   󰒱  "
+set $ws4 "4:   "
 set $ws5 "5:    "
 set $ws6 "6: "
 set $ws7 "7: "
@@ -155,38 +155,39 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # * ==================== Assign workspaces to external monitor and display
 # assign a name to each monitor and screen
 set $monitor1 HDMI-A-0
-set $monitor2 eDP
+set $monitor2 DisplayPort-0
 
 # can specify multiple outputs to a workspace. The first available will be used.
 workspace $ws1 output $monitor1
-workspace $ws2 output $monitor1
+workspace $ws2 output $monitor2
 workspace $ws3 output $monitor1
-workspace $ws4 output $monitor1
+workspace $ws4 output $monitor2
 workspace $ws5 output $monitor1
-workspace $ws6 output $monitor1
+workspace $ws6 output $monitor2
 workspace $ws7 output $monitor1
-workspace $ws8 output $monitor1
+workspace $ws8 output $monitor2
 workspace $ws9 output $monitor1
-workspace $ws10 output $monitor1
+workspace $ws10 output $monitor2
 
 # * ==================== open certain windows on certain workspaces
 # using package xprop to find window names and classes
 # class of any app = WM_CLASS(STRING)
 
-# workspace 1 - email and chat clients
-assign [class="thunderbird"] $ws1
-assign [class="Skype"] $ws1
-assign [class="Slack"] $ws1
-assign [class="Whatsapp-for-linux"] $ws1
-# workspace 2 - server
-assign [class="x2goclient"] $ws2
-assign [class="X2GoAgent"] $ws2
-assign [class="Com.cisco.secureclient.gui"] $ws2
-# workspace 3 - internet browsers
-assign [class="Google-chrome"] $ws3
-assign [class="firefox"] $ws3
-# workspace 4 - coding
-assign [class="Code"] $ws4
+# workspace 1 - server
+assign [class="x2goclient"] $ws1
+assign [class="X2GoAgent"] $ws1
+assign [class="Com.cisco.secureclient.gui"] $ws1
+# workspace 2 - coding
+assign [class="Code"] $ws2
+assign [class="Vivado"] $ws2
+# workspace 3 - email and chat clients
+assign [class="thunderbird"] $ws3
+assign [class="Skype"] $ws3
+assign [class="Slack"] $ws3
+assign [class="Whatsapp-for-linux"] $ws3
+# workspace 4 - internet browsers
+assign [class="Google-chrome"] $ws4
+assign [class="firefox"] $ws4
 # workspace 5 - files
 assign [class="Nemo"] $ws5
 # workspace 6 -
@@ -301,8 +302,8 @@ bar {
     tray_output primary
     # status bar position
     position top
-	workspace_buttons yes
-	# height 27
+    workspace_buttons yes
+    # height 27
     # font
     font pango:CaskaydiaCove Nerd Font Regular 15
     # i3bar transparency
@@ -340,24 +341,11 @@ exec_always picom -f
 # * ==================== Setup screens and monitor displays
 # using package arandr to setup displays
 
-# layout 1 - with monitor and display
-# exec_always xrandr \
-#     --output eDP --mode 1920x1080 --pos 2560x0 --rotate normal \
-#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
-#     --output DisplayPort-0 --off \
-#     --output DisplayPort-1 --off
-
-# layout 2 - with monitor only connected directly
-# exec_always xrandr --output eDP --off \
-#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
-#     --output DisplayPort-0 --off \
-#     --output DisplayPort-1 --off
-
-# layout 3 - with monitor only connected via USB C hub
+# layout 5 - 2 monitors: 1 via USB C port and 1 via HDMI port
 exec_always xrandr \
     --output eDP --off \
-    --output HDMI-A-0 --off \
-    --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+    --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+    --output DisplayPort-0 --mode 2560x1440 --pos 2560x0 --rotate normal \
     --output DisplayPort-1 --off
 
 # * ==================== Window gaps
