@@ -1,6 +1,6 @@
 return {
     'nvim-tree/nvim-web-devicons',
-    config = {
+    opts = {
         -- your personnal icons can go here (to override)
         override = {},
         -- globally enable default icons (default to false)
