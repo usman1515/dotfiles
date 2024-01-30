@@ -1,3 +1,13 @@
 *.zip
 *.tar.gz
 *.dmg
+
+# rofi catppuccin theme clone
+rofi/rofi_catppuccin_theme
+
+# i3 twm catppuccin theme
+i3/catppuccin*.conf
+
+# polybar catppuccin theme
+polybar/*.ini
+!polybar/config.ini
