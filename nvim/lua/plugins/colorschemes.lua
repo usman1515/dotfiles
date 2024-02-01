@@ -1,5 +1,5 @@
--- disable lazy loading. want theme to be always loaded
--- default priority is 50
+-- * disable lazy loading. want theme to be always loaded
+-- * default priority is 50
 
 -- return {
 --     "folke/tokyonight.nvim",
@@ -31,12 +31,32 @@
 --     opts = {},
 -- }
 
+-- return {
+--     "bluz71/vim-nightfly-colors",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         vim.cmd("colorscheme nightfly")
+--     end,
+--     opts = {},
+-- }
+
 return {
-    "bluz71/vim-nightfly-colors",
+    "sainnhe/sonokai",
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme nightfly")
+        -- vim.api.nvim_set_var('sonokai_style', 'default')    -- colorscheme 1
+        -- vim.api.nvim_set_var('sonokai_style', 'atlantis')   -- colorscheme 2
+        vim.api.nvim_set_var('sonokai_style', 'andromeda')  -- colorscheme 3
+        -- vim.api.nvim_set_var('sonokai_style', 'shusia')     -- colorscheme 4
+        -- vim.api.nvim_set_var('sonokai_style', 'maia')       -- colorscheme 5
+        -- vim.api.nvim_set_var('sonokai_style', 'espresso')   -- colorscheme 6
+        -- vim.api.nvim_set_var('sonokai_style', 'maia')       -- colorscheme 7
+        vim.cmd("colorscheme sonokai")                      -- set theme
+        vim.api.nvim_set_var('sonokai_better_performance', 1)   -- improve performance
+        vim.api.nvim_set_var('sonokai_enable_italic', 1) -- enable italic
+        vim.api.nvim_set_var('sonokai_transparent_background', 2) -- transparency
     end,
     opts = {},
 }
