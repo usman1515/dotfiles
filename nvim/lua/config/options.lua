@@ -14,9 +14,15 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.hlsearch = false
 
+-- Line numbers
+-- relative line numbers in normal mode
+vim.cmd("autocmd InsertEnter * set number | autocmd InsertLeave * set relativenumber")
+-- absolute line numbers in insert mode
+vim.cmd("autocmd BufEnter * set relativenumber | autocmd InsertEnter * set norelativenumber")
+
 -- Appearance
-opt.number = true           -- insert line numbers
-opt.relativenumber = true   -- relative line numbres
+-- opt.number = true           -- insert line numbers
+-- opt.relativenumber = true   -- relative line numbres
 opt.termguicolors = true    -- full color support
 opt.colorcolumn = "100"     -- insert line at 100 column
 opt.signcolumn = "yes"
