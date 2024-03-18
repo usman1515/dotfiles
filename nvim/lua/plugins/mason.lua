@@ -7,9 +7,9 @@ return {
 			-- automatically check for new versions when opening the :Mason window.
 			check_outdated_packages_on_open = true,
 			icons = {
-				package_installed = "✓",
-				package_pending = "➜",
-				package_uninstalled = "✗",
+				package_installed 	= "", -- "✓",
+				package_pending 	= "", -- "➜",
+				package_uninstalled = "", -- "✗",
 			},
 			keymaps = {
 				-- Keymap to expand a package
