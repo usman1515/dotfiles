@@ -20,19 +20,22 @@ local keymap = vim.api.nvim_set_keymap
 keymap("i", "jk", "<ESC>", opts)
 
 -- ========================= Normal Mode =========================
--- * Tree Directory Navigation - nvim tree
--- keymap("n", "<leader>m", ":NvimTreeFocus<CR>", opts)   -- Focus Nvim Tree
--- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)  -- Toggle Nvim Tree
--- * Tree Directory Navigation - neo tree
+-- * Tree Directory Navigation
 keymap("n", "<leader>m", ":Neotree focus<CR>", opts)        -- neo tree focus
 keymap("n", "<leader>e", ":Neotree toggle<CR>", opts)       -- neo tree toggle
 -- keymap("n", "<leader>g", ":Neotree git_status<CR>", opts)   -- neo tree git status
 
--- * Pane Navigation: Ctrl up/down/right/left
+-- * Nvim Pane Navigation: Ctrl + up/down/right/left
 keymap("n", "<C-Left>", "<C-w>h", opts)     -- h - Navigate Right
 keymap("n", "<C-Down>", "<C-w>j", opts)     -- j - Navigate Down
 keymap("n", "<C-Up>", "<C-w>k", opts)       -- k - Navigate Up
 keymap("n", "<C-Right>", "<C-w>l", opts)    -- l - Navigate Left
+
+-- * Tmux Pane Navigation: Alt + up/down/right/left
+keymap("n", "<M-Left>", "TmuxNavigateLeft", opts)   -- Navigate Left
+keymap("n", "<M-Down>", "TmuxNavigateDown", opts)   -- Navigate Down
+keymap("n", "<M-Up>", "TmuxNavigateUp", opts)       -- Navigate Up
+keymap("n", "<M-Right>", "TmuxNavigateRight", opts) -- Navigate Right
 
 -- * Pane Creation
 keymap("n", "<leader>sv", "<C-w>v", opts)       -- split window vertically
