@@ -26,6 +26,7 @@ vim.cmd("autocmd BufEnter * set relativenumber | autocmd InsertEnter * set norel
 opt.termguicolors = true    -- full color support
 opt.colorcolumn = "100"     -- insert line at 100 column
 opt.signcolumn = "yes"
+opt.cursorline = true       -- highlight the current cursor line
 opt.cmdheight = 2           -- command height
 opt.scrolloff = 10          -- start scrolling when you hit the last 10 lines
 opt.completeopt = "menuone,noinsert,noselect" -- autocompletion setting
