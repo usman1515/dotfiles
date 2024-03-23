@@ -59,8 +59,8 @@ return {
                     enable_character_fade = true
                 },
                 indent = {
-                    indent_size = 2,
-                    padding = 2,    -- extra padding on left hand side
+                    indent_size = 3,
+                    padding = 3,    -- extra padding on left hand side
                     -- indent guides
                     with_markers = true,
                     indent_marker = "│",
@@ -68,14 +68,14 @@ return {
                     highlight = "NeoTreeIndentMarker",
                     -- expander config, needed for nesting files
                     with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-                    expander_collapsed = "",
-                    expander_expanded = "",
+                    expander_collapsed = "",   -- "",
+                    expander_expanded = "",    -- "",
                     expander_highlight = "NeoTreeExpander",
                 },
                 icon = {
                     folder_closed = "",
                     folder_open = "",
-                    folder_empty = "󰜌",
+                    folder_empty = "",
                     -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
                     -- then these will never be used.
                     default = "*",
@@ -93,15 +93,15 @@ return {
                 git_status = {
                     symbols = {
                         -- Change type
-                        added     = "✚", --- or "✚", but this is redundant info if you use git_status_colors on the name
-                        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+                        added     = "", --- or "✚", but this is redundant info if you use git_status_colors on the name
+                        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
                         deleted   = "✖", -- this can only be used in the git_status source
                         renamed   = "󰁕", -- this can only be used in the git_status source
                         -- Status type
-                        untracked = "",
+                        untracked = "U ", -- "",
                         ignored   = "",
-                        unstaged  = "󰄱",
-                        staged    = "",
+                        unstaged  = "M 󰄱", -- "󰄱",
+                        staged    = "A ", -- "",
                         conflict  = "",
                     }
                 },
@@ -194,23 +194,24 @@ return {
             nesting_rules = {},
             filesystem = {
                 filtered_items = {
-                    visible = false, -- when true, they will just be displayed differently than normal items
-                    hide_dotfiles = true,
-                    hide_gitignored = true,
+                    visible = true, -- when true, they will just be displayed differently than normal items
+                    hide_dotfiles = false,
+                    hide_gitignored = false,
                     hide_hidden = true, -- only works on Windows for hidden files/directories
                     hide_by_name = {
-                            --"node_modules"
+                            -- "node_modules"
                         },
                         hide_by_pattern = { -- uses glob style patterns
-                            --"*.meta",
-                            --"*/src/*/tsconfig.json",
+                            -- "*.meta",
+                            -- "*/src/*/tsconfig.json",
                         },
                         always_show = { -- remains visible even if other settings would normally hide it
-                            --".gitignored",
+                            -- ".gitignored",
                         },
                         never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                            --".DS_Store",
-                            --"thumbs.db"
+                            -- ".DS_Store",
+                            -- "thumbs.db"
+                            '.git',
                         },
                         never_show_by_pattern = { -- uses glob style patterns
                             --".null-ls_*",
