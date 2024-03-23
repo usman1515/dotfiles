@@ -26,7 +26,7 @@ keymap("i", "jk", "<ESC>", opts)
 -- * Tree Directory Navigation - neo tree
 keymap("n", "<leader>m", ":Neotree focus<CR>", opts)        -- neo tree focus
 keymap("n", "<leader>e", ":Neotree toggle<CR>", opts)       -- neo tree toggle
-keymap("n", "<leader>g", ":Neotree git_status<CR>", opts)   -- neo tree git status
+-- keymap("n", "<leader>g", ":Neotree git_status<CR>", opts)   -- neo tree git status
 
 -- * Pane Navigation: Ctrl up/down/right/left
 keymap("n", "<C-Left>", "<C-w>h", opts)     -- h - Navigate Right
