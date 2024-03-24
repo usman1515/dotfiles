@@ -6,44 +6,44 @@ local opts = {
 		"arduino_language_server", -- arduino-language-server
 		-- bash
 		"bashls", -- bash-language-server
-        "shellcheck",
+        -- "shellcheck",
 		-- c, c++
 		"clangd",
-        "clangd-format",
-        "cpplint",
+        -- "clangd-format",
+        -- "cpplint",
 		-- cmake
 		"cmake", -- cmake-language-server
-        "cmakelang",
-        "cmakelint",
+        -- "cmakelang",
+        -- "cmakelint",
 		-- docker
 		"docker_compose_language_service", -- docker-compose-language-service
         -- git
-        "gitlint",
+        -- "gitlint",
 		-- grammarly
 		"grammarly", -- grammarly-languageserver
 		-- html
 		"html", -- html-lsp
 		-- json
 		"jsonls", -- json-lsp
-        "jsonlint",
+        -- "jsonlint",
 		-- latex
 		"ltex", -- ltex-ls
-		"texlab",
+		-- "texlab",
 		-- lua
 		"lua_ls", -- lua-language-server
-        "luacheck",
-        "stylua",
+        -- "luacheck",
+        -- "stylua",
 		-- make
 		"autotools_ls", -- autotools-language-server
 		-- markdown
-        "markdown-toc",
-		"marksman",
-        "markuplint",
+        -- "markdown-toc",
+		-- "marksman",
+        -- "markuplint",
 		-- matlab
 		"matlab_ls", -- matlab-language-server
 		-- python
 		"pyright",
-        "pylint",
+        -- "pylint",
 		-- rust
 		"rust_analyzer",
 		-- toml
@@ -54,11 +54,11 @@ local opts = {
         "vimls", -- vim-language-server
 		-- xml
 		"lemminx", -- lemminx
-        "xmlformetter",
+        -- "xmlformetter",
 		-- yaml
 		"hydra_lsp", -- hydra-lsp
 		-- "yaml-language-server",
-		"yamllint",
+		-- "yamllint",
         -- general purpose LSP
         "efm",
 	},
@@ -71,4 +71,3 @@ return {
 	event = "BufReadPre",
 	dependencies = "williamboman/mason.nvim",
 }
-
