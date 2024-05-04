@@ -118,10 +118,10 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: 󰒋 "
-set $ws2 "2: 󰨞  "
-set $ws3 "3:   󰒱  "
-set $ws4 "4:   "
-set $ws5 "5:    "
+set $ws2 "2: 󰨞 "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
@@ -177,9 +177,9 @@ workspace $ws10 output $monitor2
 assign [class="x2goclient"] $ws1
 assign [class="X2GoAgent"] $ws1
 assign [class="Com.cisco.secureclient.gui"] $ws1
+assign [class="Vivado"] $ws1
 # workspace 2 - coding
 assign [class="Code"] $ws2
-assign [class="Vivado"] $ws2
 # workspace 3 - email and chat clients
 assign [class="thunderbird"] $ws3
 assign [class="Skype"] $ws3
@@ -256,43 +256,25 @@ set $transpareny_20     #33
 set $transpareny_10     #1a
 set $transpareny_0      #00
 
-# using catppuccin frappe
-set $rosewater #f2d5cf
-set $flamingo  #eebebe
-set $pink      #f4b8e4
-set $mauve     #ca9ee6
-set $red       #e78284
-set $maroon    #ea999c
-set $peach     #ef9f76
-set $green     #a6d189
-set $teal      #81c8be
-set $sky       #99d1db
-set $sapphire  #85c1dc
-set $blue      #8caaee
-set $lavender  #babbf1
-set $text      #c6d0f5
-set $subtext1  #b5bfe2
-set $subtext0  #a5adce
-set $overlay2  #949cbb
-set $overlay1  #838ba7
-set $overlay0  #737994
-set $surface2  #626880
-set $surface1  #51576d
-set $surface0  #414559
-set $base      #303446
-set $mantle    #292c3c
-set $crust     #232634
+# Colors
+# set $rosewater #f5e0dc
+set $color1 #6272A4
+set $color2 #F8F8F2
+set $color3 #44475A
+set $color4 #282A36
+set $color5 #BFBFBF
+set $color6 #FF5555
 
 # Concatenate the two color values to create transparent colors
-set $combined_rosewater $rosewater$transpareny_10
+# set $combined_rosewater $rosewater$transpareny_10
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+# class                 border  bground text    indicator child_border
+client.focused          $color1 $color1 $color2 $color1   $color1
+client.focused_inactive $color3 $color3 $color2 $color3   $color3
+client.unfocused        $color4 $color4 $color5 $color4   $color4
+client.urgent           $color3 $color6 $color2 $color6   $color6
+client.placeholder      $color4 $color4 $color2 $color4   $color4
+client.background       $color2
 
 # * ==================== i3 Status Bar
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -305,18 +287,19 @@ bar {
     workspace_buttons yes
     # height 27
     # font
-    font pango:CaskaydiaCove Nerd Font Regular 15
+    font pango:CaskaydiaCove Nerd Font Regular 13
     # i3bar transparency
     # i3bar_command i3bar --transparency
     # i3 status bar colors
     colors {
-        separator $overlay0
-        background $base
-        statusline $text
-        focused_workspace $lavender $base $text
-        active_workspace $overlay0 $base $text
-        inactive_workspace $overlay0 $base $text
-        urgent_workspace $peach $base $peach
+        background $color4
+        statusline $color2
+        separator  $color3
+        focused_workspace  $color3 $color3 $color2
+        active_workspace   $color4 $color3 $color2
+        inactive_workspace $color4 $color4 $color5
+        urgent_workspace   $color6 $color6 $color2
+        binding_mode       $color6 $color6 $color2
     }
 }
 
@@ -332,7 +315,7 @@ bindsym $mod+Shift+m exec --no-startup-id send_to_primary
 # using fedora default dir
 # exec_always feh --bg-scale /usr/share/backgrounds/fedora-workstation/petals_light.webp
 # my wallpapers directory
-exec_always feh --bg-scale ~/wallpapers/abstract_blue_background-wallpaper-1920x1080.jpg
+exec_always feh --bg-scale ~/wallpapers/cornered_fedora_purple.png
 
 # * ==================== Transition Effects
 # using picom for faze and transparency effects between workspaces and terminals
@@ -340,6 +323,33 @@ exec_always picom -f
 
 # * ==================== Setup screens and monitor displays
 # using package arandr to setup displays
+
+# layout 1 - monitor and laptop display
+# exec_always xrandr \
+#     --output eDP --mode 1920x1080 --pos 2560x0 --rotate normal \
+#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-0 --off \
+#     --output DisplayPort-1 --off
+
+# layout 2 - 1 monitor via HDMI
+# exec_always xrandr --output eDP --off \
+#     --output HDMI-A-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-0 --off \
+#     --output DisplayPort-1 --off
+
+# layout 3 - 1 monitor via USB C hub
+# exec_always xrandr \
+#     --output eDP --off \
+#     --output HDMI-A-0 --off \
+#     --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-1 --off
+
+# layout 4 - 2 monitors: 1 via USB C hub and 1 via HDMI port
+# exec_always xrandr \
+#     --output eDP --off \
+#     --output HDMI-A-0 --mode 1920x1200 --pos 2560x0 --rotate normal \
+#     --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal \
+#     --output DisplayPort-1 --off
 
 # layout 5 - 2 monitors: 1 via USB C port and 1 via HDMI port
 exec_always xrandr \
@@ -361,3 +371,18 @@ title_align center
 for_window [all] title_window_icon on
 # enable window icons for all windows with extra horizontal padding
 for_window [all] title_window_icon padding 3px
+
+
+
+
+
+
+##  Screenshots in files
+bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
+bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-current.png"
+bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
+
+## Screenshots in clipboards
+bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
