@@ -29,13 +29,19 @@ keymap.set("n", "<leader>ee", ":Neotree toggle<CR>", { desc = "open file tree" }
 keymap.set("n", "<leader>ef", ":Neotree filesystem<CR>", { desc = "open current file in file tree" })
 -- keymap("n", "<leader>g", ":Neotree git_status<CR>", opts)   -- neo tree git status
 
--- * Nvim Pane Navigation: Ctrl + hjkl
+-- * Nvim Pane Navigation: Alt + hjkl
 keymap.set("n", "<M-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 keymap.set("n", "<M-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 keymap.set("n", "<M-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 keymap.set("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
--- * Tmux Pane Navigation: Alt + up/down/right/left
+-- * Nvim Pane Navigation: Alt + up/down/right/left
+keymap.set("n", "<M-Left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+keymap.set("n", "<M-Down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+keymap.set("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+keymap.set("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+-- * Tmux Pane Navigation: Ctrl + up/down/right/left
 keymap.set("n", "<C-Left>", "TmuxNavigateLeft", { desc = "Navigate Left", remap = true })
 keymap.set("n", "<C-Down>", "TmuxNavigateDown", { desc = "Navigate Down", remap = true })
 keymap.set("n", "<C-Up>", "TmuxNavigateUp", { desc = "Navigate Up", remap = true })
