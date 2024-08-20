@@ -10,12 +10,84 @@ return {
         vim.g.nightflyItalics = true
         vim.g.nightflyNormalFloat = false
         -- set global transparency
-        vim.g.nightflyTransparent = false 
+        vim.g.nightflyTransparent = false
         -- Apply the nightfly colorscheme
         vim.cmd("colorscheme nightfly")
     end,
     opts = {},
 }
+
+-- return {
+--     "marko-cerovac/material.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         -- available colors
+--         -- vim.cmd("colorscheme material-darker")
+--         -- vim.cmd("colorscheme material-lighter")
+--         -- vim.cmd("colorscheme material-oceanic")
+--         -- vim.cmd("colorscheme material-palenight")
+--         vim.cmd("colorscheme material-deep-ocean")
+--         require('material').setup({
+--             contrast = {
+--                 terminal = true, -- Enable contrast for the built-in terminal
+--                 sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+--                 floating_windows = false, -- Enable contrast for floating windows
+--                 cursor_line = false, -- Enable darker background for the cursor line
+--                 lsp_virtual_text = false, -- Enable contrasted background for lsp virtual text
+--                 non_current_windows = false, -- Enable contrasted background for non-current windows
+--                 filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
+--             },
+--             styles = { -- Give comments style such as bold, italic, underline etc.
+--                 comments = { [[ italic = true ]] },
+--                 strings = { --[[ bold = true ]] },
+--                 keywords = { --[[ underline = true ]] },
+--                 functions = { [[ bold = true, undercurl = true ]] },
+--                 variables = {},
+--                 operators = {},
+--                 types = {},
+--             },
+--             plugins = { -- Uncomment the plugins that you use to highlight them
+--                 -- Available plugins:
+--                 -- "coc",
+--                 -- "colorful-winsep",
+--                 -- "dap",
+--                 -- "dashboard",
+--                 -- "eyeliner",
+--                 -- "fidget",
+--                 -- "flash",
+--                 "gitsigns",
+--                 -- "harpoon",
+--                 -- "hop",
+--                 -- "illuminate",
+--                 "indent-blankline",
+--                 -- "lspsaga",
+--                 -- "mini",
+--                 -- "neogit",
+--                 -- "neotest",
+--                 "neo-tree",
+--                 -- "neorg",
+--                 -- "noice",
+--                 "nvim-cmp",
+--                 -- "nvim-navic",
+--                 -- "nvim-tree",
+--                 "nvim-web-devicons",
+--                 "rainbow-delimiters",
+--                 -- "sneak",
+--                 "telescope",
+--                 "trouble",
+--                 "which-key",
+--                 -- "nvim-notify",
+--             },
+--             high_visibility = {
+--                 lighter = false,    -- Enable higher contrast text for lighter style
+--                 darker = false      -- Enable higher contrast text for darker style
+--             },
+--             lualine_style = "stealth",  -- Lualine style ( can be 'stealth' or 'default' )
+--         })
+--     end,
+--     opts = {},
+-- }
 
 -- return {
 --     "folke/tokyonight.nvim",
