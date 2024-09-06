@@ -1,5 +1,5 @@
--- * disable lazy loading. want theme to be always loaded
--- * default priority is 50
+-- INFO: disable lazy loading. want theme to be always loaded
+-- default priority is 50
 
 return {
     "bluz71/vim-nightfly-colors",
@@ -16,6 +16,22 @@ return {
     end,
     opts = {},
 }
+
+-- return {
+--     "bluz71/vim-moonfly-colors",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         vim.g.moonflyCursorColor = true
+--         vim.g.moonflyItalics = true
+--         vim.g.moonflyNormalFloat = false
+--         -- set global transparency
+--         vim.g.moonflyTransparent = false
+--         -- Apply the moonfly colorscheme
+--         vim.cmd("colorscheme moonfly")
+--     end,
+--     opts = {},
+-- }
 
 -- return {
 --     "marko-cerovac/material.nvim",
