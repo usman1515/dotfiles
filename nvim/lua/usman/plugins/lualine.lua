@@ -5,7 +5,7 @@ return {
         require("lualine").setup({
             options = {
                 icons_enabled = true,
-                theme = "powerline", -- "nightfly",    -- auto
+                theme = "powerline_dark", -- "powerline", -- "nightfly", -- auto
                 globalstatus = true,
                 -- component_separators = { left = "|", right = "|" },
                 -- section_separators = { left = "", right = "" },
