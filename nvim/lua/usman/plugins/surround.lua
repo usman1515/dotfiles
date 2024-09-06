@@ -1,4 +1,4 @@
--- can be used to add, remove and substitute single, double quotes and brackets
+-- INFO: can be used to add, remove and substitute single, double quotes and brackets
 -- to add quotes: ys + iw + ""
 -- to remove quotes: ds + ""
 -- to change symbol: cs + old_symbol + new_symbol

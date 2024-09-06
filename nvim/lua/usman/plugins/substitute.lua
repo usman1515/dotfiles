@@ -1,4 +1,4 @@
--- to replace words: viw + y + siw
+-- INFO: to replace words: viw + y + siw
 
 -- set keymaps
 local keymap = vim.keymap -- for conciseness

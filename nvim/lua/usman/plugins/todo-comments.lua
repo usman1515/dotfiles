@@ -1,8 +1,10 @@
 -- use <leader>ft to show tags in telescope
 -- TODO:
 -- HACK:
+-- WARNING:
 -- BUG:
 -- NOTE:
+-- INFO:
 
 
 local keymap = vim.keymap
