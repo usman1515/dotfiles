@@ -1,9 +1,20 @@
 # Hyprland
 
-- list all available monitors: `hyprctl monitors all`
-- reload changes: `hyprctl reload`
+## NOTE: Important
+- The config involves the use of plugin/s which require the latest version of cmake to be build from source.
+- Hyprland must also be built from source using meson.
+- On Fedora 40 or greater various dependenies are needed. Check this [script]().
 
-- download catppuccin mocha colors:
-`wget https://github.com/catppuccin/hyprland/blob/main/themes/mocha.conf`
+## Install pre requsite packages
+```bash
+sudo dnf install -y hyprpaper waybar brightnessctl wofi wpctl playerctl
+```
 
-- install waybar: `sudo dnf install waybar`
+| package | description |
+| :--: | :-- |
+| hyprpaper | changing wallpapers |
+| waybar | status bar |
+| brightnessctl | screen brightness |
+| wofi | display menu |
+| pactl | volume control |
+| playerctl | media keys |
