@@ -1,8 +1,7 @@
 -- INFO: can be used to add, remove and substitute single, double quotes and brackets
--- to add quotes: ys + iw + ""
--- to remove quotes: ds + ""
--- to change symbol: cs + old_symbol + new_symbol
-
+-- to add quotes (you surround):        ys + iw + ""
+-- to change symbol (change surround):  cs + old_symbol + new_symbol
+-- to remove quotes (delete surround):  ds + ""
 
 
 return {
