@@ -83,6 +83,10 @@ brew install tmux
 34. [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim) - rainbow parantheses
 35. [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - git integration for buffers
 36. [lazygit](https://github.com/jesseduffield/lazygit) - lazygit integration in nvim
+37. [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim) - improve markdown viewing in nvim
+38. [md-preview](https://github.com/iamcco/markdown-preview.nvim) - markdown preview plugin
+39. [TreeSJ](https://github.com/Wansmer/treesj) - splitting/joining code blocks
+40. [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - git blame plugin
 
 
 ## 4. Colorschemes
@@ -91,4 +95,4 @@ brew install tmux
 3.  [tokyonight](https://github.com/folke/tokyonight.nvim)
 4.  [nightfox](https://github.com/EdenEast/nightfox.nvim)
 5.  [sonokai](https://github.com/sainnhe/sonokai)
-
+6.  [vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors)
