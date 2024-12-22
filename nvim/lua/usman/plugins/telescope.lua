@@ -19,7 +19,7 @@ local config = function()
             find_files = {
                 -- theme = "dropdown", -- uncomment to use dropdown else default
                 previewer = true,
-                hidden = true,
+                hidden = false,     -- dont show hidden files eg .git
             },
             live_grep = {
                 -- theme = "dropdown", -- uncomment to use dropdown else default
@@ -46,7 +46,7 @@ return {
         },
     config = config,
     keys = {
-        keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", {desc = "list telescope keymaps"}),
+        keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "list telescope keymaps" }),
         keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", {desc = "list available help tags"}),
         keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {desc = "find files within current working directory, respects .gitignore"}),
         keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" }),

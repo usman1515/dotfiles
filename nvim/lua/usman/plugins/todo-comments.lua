@@ -1,4 +1,5 @@
--- use <leader>ft to show tags in telescope
+-- INFO: use <leader>ft to show tags in telescope
+
 -- TODO:
 -- HACK:
 -- WARNING:
