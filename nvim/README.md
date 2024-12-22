@@ -84,9 +84,10 @@ brew install tmux
 35. [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - git integration for buffers
 36. [lazygit](https://github.com/jesseduffield/lazygit) - lazygit integration in nvim
 37. [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim) - improve markdown viewing in nvim
-38. [md-preview](https://github.com/iamcco/markdown-preview.nvim) - markdown preview plugin
-39. [TreeSJ](https://github.com/Wansmer/treesj) - splitting/joining code blocks
-40. [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - git blame plugin
+38. [md-preview](https://github.com/iamcco/markdown-preview.nvim) - markdown preview plugin 
+
+39. [mason.nvim](https://github.com/williamboman/mason.nvim) - install and manage LSP and DAP servers, linters, formatters
+40. [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) - extension for mason.nvim
 
 
 ## 4. Colorschemes
