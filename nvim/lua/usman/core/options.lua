@@ -9,14 +9,15 @@ opt.autoindent = true   -- use indent from previosu line
 opt.smartindent = true  -- insert smart indent tabs
 opt.cindent = true      -- configurable to different indent styles
 opt.wrap = true         -- set line wrapping around long lines
-opt.textwidth = 100     -- enable line wrapping after N char
-opt.wrapmargin = 2      -- move to the next line N char before margin.
+-- opt.textwidth = 100     -- enable line wrapping after N char
+-- opt.wrapmargin = 2      -- move to the next line N char before margin.
 
 -- Search
-opt.incsearch = true    -- 
+opt.incsearch = true    --
 opt.ignorecase = true   -- ignore case when searching
 opt.smartcase = true    -- assumes you want case sensitive
 opt.hlsearch = false
+opt.path:append("**")	-- recursively search $PWD
 
 -- Appearance
 opt.relativenumber = true   -- relative line numbres
