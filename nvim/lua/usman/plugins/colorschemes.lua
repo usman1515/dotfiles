@@ -2,20 +2,47 @@
 -- default priority is 50
 
 return {
-    "bluz71/vim-nightfly-colors",
+    "oxfist/night-owl.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-        vim.g.nightflyCursorColor = true
-        vim.g.nightflyItalics = true
-        vim.g.nightflyNormalFloat = false
-        -- set global transparency
-        vim.g.nightflyTransparent = false
-        -- Apply the nightfly colorscheme
-        vim.cmd("colorscheme nightfly")
+        require("night-owl").setup({
+            -- These are the default settings
+            bold = true,
+            italics = true,
+            underline = true,
+            undercurl = true,
+            transparent_background = false,
+        })
+        vim.cmd.colorscheme("night-owl")
     end,
-    opts = {},
 }
+
+-- return {
+--     "Mofiqul/vscode.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function ()
+--         vim.cmd("colorscheme vscode")
+--     end,
+--     opts = {},
+-- }
+
+-- return {
+--     "bluz71/vim-nightfly-colors",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         vim.g.nightflyCursorColor = true
+--         vim.g.nightflyItalics = true
+--         vim.g.nightflyNormalFloat = false
+--         -- set global transparency
+--         vim.g.nightflyTransparent = false
+--         -- Apply the nightfly colorscheme
+--         vim.cmd("colorscheme nightfly")
+--     end,
+--     opts = {},
+-- }
 
 -- return {
 --     "bluz71/vim-moonfly-colors",
