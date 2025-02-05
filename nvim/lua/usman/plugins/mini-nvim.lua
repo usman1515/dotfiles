@@ -66,7 +66,7 @@ return {
             },
         })
         require('mini.comment').setup({})           -- code commenting
-        require('mini.completion').setup({})        -- autocompeltion and signature help
+        -- require('mini.completion').setup({})        -- autocompeltion and signature help
         require('mini.cursorword').setup({})        -- automatic highlighting of word under cursor
         require('mini.icons').setup({})             -- icon set
         require('mini.indentscope').setup({})       -- animated vertical tab line
