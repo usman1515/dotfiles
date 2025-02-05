@@ -1,8 +1,3 @@
--- return {
---     "christoomey/vim-tmux-navigator",
---     lazy = false,
--- }
-
 return {
     "christoomey/vim-tmux-navigator",
     cmd = {
