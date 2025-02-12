@@ -17,7 +17,10 @@ return {
                     statusline = {},
                     winbar = {},
                 },
-                -- always_divide_middle = true,
+                ignore_focus = {},
+                always_divide_middle = true,
+                -- always_show_tabline = true,
+                globalstatus = false,
                 refresh = {
                     statusline = 1000,
                     tabline = 1000,
@@ -26,7 +29,7 @@ return {
             },
             sections = {
                 lualine_a = {'mode'},
-                lualine_b = {'branch', 'diff', 'diagnostics'},
+                lualine_b = {{'branch', icon = ''}, 'diff', 'diagnostics'},
                 lualine_c = {{'filename', path=1}, {require('auto-session.lib').current_session_name}},
                 lualine_x = {'encoding', 'fileformat', 'filetype'},
                 lualine_y = {'progress'},
