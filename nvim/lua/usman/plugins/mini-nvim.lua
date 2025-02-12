@@ -65,7 +65,17 @@ return {
                 scroll_up = '<C-u>',
             },
         })
-        require('mini.comment').setup({})           -- code commenting
+        -- require('mini.comment').setup({})           -- code commenting
+        require("mini.comment").setup({             -- code commenting
+            hooks = {
+                pre = function()
+                    local ft = vim.bo.filetype
+                    if ft == "verilog" or ft == "systemverilog" or ft == "arduino" then
+                        vim.bo.commentstring = "// %s"
+                    end
+                end,
+            },
+        })
         -- require('mini.completion').setup({})        -- autocompeltion and signature help
         require('mini.cursorword').setup({})        -- automatic highlighting of word under cursor
         require('mini.icons').setup({})             -- icon set
