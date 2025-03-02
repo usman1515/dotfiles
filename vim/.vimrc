@@ -109,4 +109,67 @@ call plug#end()
 
 
 " ---------------- Keymaps ---------------- "
+" mapping syntax: map_mode <what_you_type> <what_is_executed>
+" nnoremap - map keys in normal mode
+" inoremap - map keys in insert mode
+" vnoremap - map keys in visual mode
+
+let mapleader = " "     " map leader key to spacebar
+
+" ========================= Insert Mode =========================
+" Exit insert mode with 'jk'
+inoremap jk <ESC>
+
+" ========================= Normal Mode =========================
+" Open netrw in split in tree view
+nnoremap <leader>e :25Lex<CR> 
+
+" tmux/vim Pane Navigation: Ctrl + hjkl (cross navigation)
+nnoremap <C-h> <C-w>h    " Go to Left Window
+nnoremap <C-j> <C-w>j    " Go to Lower Window
+nnoremap <C-k> <C-w>k    " Go to Upper Window
+nnoremap <C-l> <C-w>l    " Go to Right Window
+
+" tmux/vim Pane Navigation: Ctrl + arrow keys (cross-navigation)
+" Replace with Tmux equivalents if necessary
+nnoremap <C-Left> :TmuxNavigateLeft<cr>    " Navigate Left
+nnoremap <C-Down> :TmuxNavigateDown<cr>    " Navigate Down
+nnoremap <C-Up> :TmuxNavigateUp<cr>        " Navigate Up
+nnoremap <C-Right> :TmuxNavigateRight<cr>  " Navigate Right
+
+" Pane Creation
+nnoremap <leader>sv <C-w>v    " Split window vertically
+nnoremap <leader>sh <C-w>s    " Split window horizontally
+nnoremap <leader>se <C-w>=    " Make split window width equal
+nnoremap <leader>sx :close<CR>    " Close current split window
+
+" Buffer Navigation
+nnoremap <leader>bl :bnext<CR>    " Go to next buffer
+nnoremap <leader>bh :bprevious<CR>    " Go to prev buffer
+nnoremap <Tab> :bnext<CR>        " Go to next buffer
+nnoremap <S-Tab> :bprevious<CR>  " Go to prev buffer
+nnoremap <leader>bx :bd<CR>      " Close current buffer
+
+" Tab Navigation
+nnoremap <leader>to :tabnew<CR>      " Open new tab
+nnoremap <leader>tx :tabclose<CR>    " Close current tab
+nnoremap <leader>tl :tabn<CR>        " Go to next tab
+nnoremap <leader>th :tabp<CR>        " Go to previous tab
+nnoremap <leader>tf :tabnew %<CR>    " Open current buffer in new tab
+
+" Search
+nnoremap <leader>nh :nohl<CR>        " Clear search highlights
+
+" Increment/Decrement numbers
+nnoremap <leader>+ <C-a>    " Increment number
+nnoremap <leader>- <C-x>    " Decrement number
+
+" Remove trailing spaces (requires plugin mini.trailspace)
+" nnoremap <leader>tt :lua MiniTrailspace.trim()<CR>    " Trim trailing spaces
+" nnoremap <leader>TT :lua MiniTrailspace.trim_last_lines()<CR>  " Trim last linesl Mode
+
+" ========================= Visual Mode =========================
+" Indentation
+vnoremap < <gv    " Indent right
+vnoremap > >gv    " Indent left
 
