@@ -89,4 +89,24 @@ set backspace=indent,eol,start  " Enable proper backspace behavior
 set clipboard+=unnamedplus      " Enable system clipboard integration
 
 " ---------------- Vim Plug Plugins ---------------- "
+call plug#begin()
+"
+" Seamless navigation between tmux panes and vim splits
+Plug 'christoomey/vim-tmux-navigator'
+
+" On-demand loading: loaded when the specified command is executed
+" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+
+call plug#end()
+
+" Color schemes should be loaded after plug#end().
+" colorscheme seoul256
+
+
+
+
+
+
+
+" ---------------- Keymaps ---------------- "
 
