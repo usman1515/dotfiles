@@ -8,7 +8,6 @@ return {
             require("todo-comments").setup({})
         end,
     },
-    --- @type snacks.Config
     opts = {
         -- your plugin configuration goes here
         animate = { enabled = true },       -- efficient animation library
@@ -30,6 +29,7 @@ return {
                 end)
             end,
         },
+        bufdelete = { enabled = true },     -- close buffers while preserving layout
         dashboard = {                       -- dashboard at startup
             enabled = true,
             -- your dashboard configuration comes here
@@ -59,6 +59,101 @@ return {
             title_pos = "center",
             ft = "git",
         },
+        image = {                           --  view images in nvim snacks.picker
+            enabled = true,
+            formats = {
+                "png",
+                "jpg",
+                "jpeg",
+                "svg",
+                "gif",
+                "bmp",
+                "webp",
+                "tiff",
+                "heic",
+                "avif",
+                "mp4",
+                "mov",
+                "avi",
+                "mkv",
+                "webm",
+                "pdf",
+            },
+            force = false, -- try displaying the image, even if the terminal does not support it
+            img_dirs = { "img", "images", "assets", "static", "public", "media", "attachments", "figures" },
+            -- window options applied to windows displaying image buffers
+            -- an image buffer is a buffer with `filetype=image`
+            wo = {
+                wrap = false,
+                number = false,
+                relativenumber = false,
+                cursorcolumn = false,
+                signcolumn = "no",
+                foldcolumn = "0",
+                list = false,
+                spell = false,
+                statuscolumn = "",
+            },
+            -- store processed images in cache directory
+            cache = vim.fn.stdpath("cache") .. "/snacks/image",
+            debug = {
+                request = false,
+                convert = false,
+                placement = false,
+            },
+            env = {},
+            -- icons used to show where an inline image is located that is rendered below the text.
+            icons = {
+                math = "󰪚 ",
+                chart = "󰄧 ",
+                image = " ",
+            },
+            convert = {
+                notify = true,      -- show a notification on error
+                -- convert mermaid diagrams based on nvim theme
+                mermaid = function()
+                    local theme = vim.o.background == "light" and "neutral" or "dark"
+                    return { "-i", "{src}", "-o", "{file}", "-b", "transparent", "-t", theme, "-s", "{scale}" }
+                end,
+                -- imagemagick configuration
+                magick = {
+                    default = { "{src}[0]", "-scale", "1920x1080>" }, -- default for raster images
+                    vector = { "-density", 192, "{src}[0]" }, -- used by vector images like svg
+                    math = { "-density", 192, "{src}[0]", "-trim" },
+                    pdf = { "-density", 192, "{src}[0]", "-background", "white", "-alpha", "remove", "-trim" },
+                },
+            },
+            math = {
+                enabled = true, -- enable math expression rendering
+                -- in the templates below, `${header}` comes from any section in your document,
+                -- between a start/end header comment. Comment syntax is language-specific.
+                -- * start comment: `// snacks: header start`
+                -- * end comment:   `// snacks: header end`
+                typst = {
+                    tpl = [[
+                    #set page(width: auto, height: auto, margin: (x: 2pt, y: 2pt))
+                    #show math.equation.where(block: false): set text(top-edge: "bounds", bottom-edge: "bounds")
+                    #set text(size: 12pt, fill: rgb("${color}"))
+                    ${header}
+                    ${content}]],
+                },
+                latex = {
+                    font_size = "Large", -- see https://www.sascha-frank.com/latex-font-size.html
+                    -- for latex documents, the doc packages are included automatically,
+                    -- but you can add more packages here. Useful for markdown documents.
+                    packages = { "amsmath", "amssymb", "amsfonts", "amscd", "mathtools" },
+                    tpl = [[
+                    \documentclass[preview,border=0pt,varwidth,12pt]{standalone}
+                    \usepackage{${packages}}
+                    \begin{document}
+                    ${header}
+                    { \${font_size} \selectfont
+                    \color[HTML]{${color}}
+                    ${content}}
+                    \end{document}]],
+                },
+            },
+        },
         notifier = {                        -- notifications UI
             enabled = true,
             -- your notifier configuration goes here
@@ -72,7 +167,6 @@ return {
                 debug = " ",
                 trace = " ",
             },
-            --- @type snacks.notifier.style
             date_format = "%R", -- time format for notifications
             more_format = " ↓ %d lines ",
             refresh = 50,   -- refresh at most every 50ms
@@ -132,7 +226,7 @@ return {
         { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
         { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
         { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-        { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+        -- { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
         { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
         { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
         { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
@@ -144,11 +238,11 @@ return {
         { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
         { "<leader>qp", function() Snacks.picker.projects() end, desc = "Projects" },
         -- LSP
-        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-        { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+        -- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        -- { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        -- { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        -- { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        -- { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     },
 }
 
