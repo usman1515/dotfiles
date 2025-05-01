@@ -1,0 +1,404 @@
+# ==================== Keybindings
+
+# ---------- launching programs
+# set mod key
+set $mod Mod4
+
+# terminal
+bindsym $mod+Return exec --no-startup-id kitty
+
+# dmenu
+# bindsym $mod+d exec --no-startup-id dmenu_run
+
+# rofi
+bindsym $mod+d exec --no-startup-id rofi -show drun
+
+# picom
+exec --no-startup-id picom -b
+
+# flameshot
+# better lock screen
+# rob control
+# media player controls
+# change keyboard language
+
+# ---------- window manipulation
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split orientation
+bindsym $mod+v split toggle
+
+# split in horizontal orientation
+# bindsym $mod+h split h
+# split in vertical orientation
+# bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# click and drag tiled windows using their titlebar
+tiling_drag modifier titlebar
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# move focused window to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show scratchpad window
+bindsym $mod+minus scratchpad show
+
+# resize window
+bindsym $mod+r mode "resize"
+
+# resize window (can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # pressing vim navigation keys will shrink/grow the window’s width and height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# logging out
+bindsym $mod+Shift+x exec i3lock
+
+# move workspace to primary display
+bindsym $mod+Shift+m exec --no-startup-id send_to_primary
+
+# screenshots in files
+bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
+bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-current.png"
+bindsym $mod+Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
+
+# screenshots in clipboards
+bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
+
+# ==================== Workspaces
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# workspace back and forth
+workspace_auto_back_and_forth yes
+
+# workspaces names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2; layout tabbed
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4; layout tabbed
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload i3 config
+bindsym $mod+Shift+c reload
+
+# restart i3
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# ---------- assign workspaces to monitors
+# assign name to each monitor
+# set $monitor1 DisplayPort-0
+# set $monitor2 eDP
+set $monitor1 HDMI-A-0
+set $monitor2 eDP
+
+# ---------- Setup monitor display layout (arandr)
+exec_always xrandr \
+    --output eDP --mode 1920x1080 --pos 1920x0 --rotate normal \
+    --output HDMI-A-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DisplayPort-0 --off \
+    --output DisplayPort-1 --off
+
+# can specify multiple outputs to a workspace
+workspace $ws1 output $monitor1
+workspace $ws2 output $monitor1
+workspace $ws3 output $monitor1
+workspace $ws4 output $monitor1
+workspace $ws5 output $monitor1
+workspace $ws6 output $monitor1
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor2
+workspace $ws9 output $monitor2
+workspace $ws10 output $monitor2
+
+# ---------- assign programs to workspaces
+# workspace 1 - server
+assign [class="x2goclient"] $ws1
+assign [class="X2GoAgent"] $ws1
+assign [class="Com.cisco.secureclient.gui"] $ws1
+assign [class="Vivado"] $ws1
+assign [class="KeePassXC"] $ws1
+
+# workspace 2 - coding
+assign [class="Code"] $ws2
+
+# workspace 3 - email and chat clients
+assign [class="thunderbird"] $ws3
+assign [class="Skype"] $ws3
+assign [class="Slack"] $ws3
+assign [class="teams-for-linux"] $ws3
+
+# workspace 4 - internet browsers
+assign [class="Google-chrome"] $ws4
+assign [class="Chromium-browser"] $ws4
+assign [class="org.mozilla.firefox"] $ws4
+assign [class="LibreWolf"] $ws4
+
+# workspace 5 - files
+assign [class="Nemo"] $ws5
+
+# workspace 6
+# workspace 7
+# workspace 8
+# workspace 9
+# workspace 10
+assign [class="Spotify"] $ws10
+assign [class="Spotube"] $ws10
+assign [class="Whatsapp-for-linux"] $ws10
+
+# ==================== Startup / Autolaunch Programs
+
+# XDG autostart
+exec --no-startup-id dex-autostart --autostart --environment i3
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# nm-applet
+exec --no-startup-id nm-applet
+
+# volume icon
+exec --no-startup-id volumeicon
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# use playerctl for media keys in PulseAudio
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+
+# ---------- programs
+# emails and chats
+exec --no-startup-id thunderbird
+exec --no-startup-id Skype
+exec --no-startup-id teams-for-linux
+
+# VPNs and remote desktops
+exec --no-startup-id x2goclient
+exec --no-startup-id Com.cisco.secureclient.gui
+
+# browsers
+exec --no-startup-id chromium-browser
+exec --no-startup-id firefox
+
+# text editors
+exec --no-startup-id code
+
+# others
+exec --no-startup-id spotify
+exec --no-startup-id spotube
+exec --no-startup-id Whatsapp-for-Linux
+
+# rules for opening specific programs
+# for_window [class="Polybar"] border pixel 0
+
+# ---------- scripts
+
+# ==================== Background Wallpaper
+# INFO: Link: https://github.com/orangci/walls-catppuccin-mocha.git
+exec_always --no-startup-id feh --randomize --reload 60 --bg-scale ~/walls_catppuccin_mocha/
+
+# ==================== Window Outlines
+# set gaps
+gaps inner 8
+gaps outer 2
+
+# only enable gaps on a workspace when there is at least one container
+smart_gaps on
+
+# only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
+
+# move window title to center
+title_align center
+
+# enable window icons for all windows
+for_window [all] title_window_icon on
+
+# enable window icons for all windows with extra horizontal padding
+for_window [all] title_window_icon padding 3px
+
+# smart borders
+smart_borders on
+
+# set borders
+default_floating_border pixel 3
+for_window [class="^.*"] border pixel 4
+# for_window [class="^.*"] border normal
+hide_edge_borders none
+
+# ==================== Fonts
+font pango:CaskaydiaCove Nerd Font Mono 8
+
+# ==================== Status Bar
+
+# ---------- polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
+
+# ---------- i3status
+
+# # colorschemes: transparency colors
+# # Link: https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+# set $transpareny_100    #ff
+# set $transpareny_90     #e6
+# set $transpareny_80     #cc
+# set $transpareny_70     #b3
+# set $transpareny_60     #99
+# set $transpareny_50     #80
+# set $transpareny_40     #66
+# set $transpareny_30     #4d
+# set $transpareny_20     #33
+# set $transpareny_10     #1a
+# set $transpareny_0      #00
+#
+# # colors
+# # set $rosewater #f5e0dc
+# set $color1 #6272A4
+# set $color2 #F8F8F2
+# set $color3 #44475A
+# set $color4 #282A36
+# set $color5 #BFBFBF
+# set $color6 #FF5555
+#
+# # Concatenate the two color values to create transparent colors
+# # set $combined_rosewater $rosewater$transpareny_10
+#
+# # class                 border  bground text    indicator child_border
+# client.focused          $color1 $color1 $color2 $color1   $color1
+# client.focused_inactive $color3 $color3 $color2 $color3   $color3
+# client.unfocused        $color4 $color4 $color5 $color4   $color4
+# client.urgent           $color3 $color6 $color2 $color6   $color6
+# client.placeholder      $color4 $color4 $color2 $color4   $color4
+# client.background       $color2
+#
+# # i3 Status Bar
+# # start i3bar to display a workspace bar
+# bar {
+#     status_command i3status -c ~/.config/i3/i3status.conf
+#     tray_output primary
+#     # status bar position
+#     position top
+#     workspace_buttons yes
+#     # height 27
+#     # font
+#     font pango:CaskaydiaCove Nerd Font Mono 12
+#     # i3bar transparency
+#     i3bar_command i3bar --transparency
+#     # i3 status bar colors
+#     colors {
+#         background          $color4
+#         statusline          $color2
+#         separator           $color3
+#         focused_workspace   $color3 $color3 $color2
+#         active_workspace    $color4 $color3 $color2
+#         inactive_workspace  $color4 $color4 $color5
+#         urgent_workspace    $color6 $color6 $color2
+#         binding_mode        $color6 $color6 $color2
+#     }
+# }
+#
