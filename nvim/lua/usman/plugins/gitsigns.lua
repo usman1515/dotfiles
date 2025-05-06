@@ -106,7 +106,7 @@ return {
         vim.api.nvim_set_hl(0, "GitSignsTopDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
         vim.api.nvim_set_hl(0, "GitSignsChangeDelete", { fg = "#ff0000", bg = "NONE" }) -- Red
         vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#006400", bg = "NONE" })    -- Dark green
-        
+
         -- Ensure colors persist after colorscheme changes
         vim.api.nvim_create_autocmd("ColorScheme", {
             pattern = "*",
