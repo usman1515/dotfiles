@@ -2,13 +2,9 @@ return {
     'echasnovski/mini.nvim',
     version = '*',      -- stable
     event = 'VeryLazy',
-    -- dependencies = {
-    --     "nvim-tree/nvim-web-devicons",
-    -- },
     config = function()
         -- load specific modules only to enable their functionality
-        -- require('mini.animate').setup({})       -- animated common neovim sections
-        require('mini.bracketed').setup({       -- navigate using square brackets
+        require('mini.bracketed').setup({           -- navigate using square brackets
             buffer     = { suffix = 'b', options = {} },
             comment    = { suffix = 'c', options = {} },
             conflict   = { suffix = 'x', options = {} },
@@ -24,7 +20,6 @@ return {
             window     = { suffix = 'w', options = {} },
             yank       = { suffix = 'y', options = {} },
         })
-        require('mini.bufremove').setup({})     -- close buffers while preserving layout
         require('mini.clue').setup({            -- show next keypress clues
             -- Array of extra clues to show
             clues = {},
@@ -65,7 +60,6 @@ return {
                 scroll_up = '<C-u>',
             },
         })
-        -- require('mini.comment').setup({})           -- code commenting
         require("mini.comment").setup({             -- code commenting
             hooks = {
                 pre = function()
@@ -76,10 +70,9 @@ return {
                 end,
             },
         })
-        -- require('mini.completion').setup({})        -- autocompeltion and signature help
         require('mini.cursorword').setup({})        -- automatic highlighting of word under cursor
         require('mini.icons').setup({})             -- icon set
-        require('mini.indentscope').setup({})       -- animated vertical tab line
+        -- require('mini.indentscope').setup({})       -- animated vertical tab line
         require('mini.pairs').setup({})             -- bracket autopairing
         require('mini.surround').setup({            -- add, remove, replace delimiters
             -- Add custom surroundings to be used on top of builtin ones. For more information with
