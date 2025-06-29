@@ -7,7 +7,7 @@ vim.opt.autoindent = true       -- use indent from previosu line
 vim.opt.smartindent = true      -- insert smart indent tabs
 vim.opt.cindent = true          -- configurable to different indent styles
 vim.opt.wrap = true             -- set line wrapping around long lines
-vim.opt.textwidth = 100         -- enable line wrapping after N har
+vim.opt.textwidth = 100         -- enable line wrapping after N char
 vim.opt.wrapmargin = 2          -- move to the next line N char before margin.
 
 -- netrw
@@ -17,7 +17,8 @@ vim.g.netrw_altv = 1            -- change from left splitting to right splitting
 vim.g.netrw_liststyle=3         -- tree style view in netrw
 
 -- Search
-vim.opt.incsearch = true        --
+vim.opt.incsearch = true        -- show word matches live
+vim.opt.inccommand = "split"    -- show live preview of substitutions
 vim.opt.ignorecase = true       -- ignore case when searching
 vim.opt.smartcase = true        -- assumes you want case sensitive
 vim.opt.hlsearch = false
@@ -47,7 +48,8 @@ vim.opt.splitright = true       -- new panes added on right
 vim.opt.splitbelow = true       -- new panes added on bottom
 vim.opt.autochdir = false       -- dont automatically change dirs
 vim.opt.iskeyword:append("-")   -- words with - is a whole word
--- vim.opt.title = true            -- show title
+vim.opt.title = true            -- show title
+vim.opt.titlestring = "%t (%{expand(\"%:p:h\")}) - NVIM" -- show title = NVIM
 vim.opt.syntax = "ON"           -- enable syntax highlighting
 vim.opt.compatible = false      -- turn OFF vi compatiblity mode
 vim.opt.mouse = 'a'             -- enable the mouse in all modes
@@ -62,8 +64,12 @@ vim.opt.undodir = vim.fn.expand("~/.vim/undodir")   -- undo file dir
 vim.opt.backspace = "indent,eol,start"              --  backspace key behaviour
 vim.opt.clipboard:append("unnamedplus")             -- allow copy pasting inside and outside vim
 
+vim.opt.isfname:append("@-@")   -- treat '@' and '-' as part of a filename
+vim.opt.updatetime = 50         -- reduce delay before triggering CursorHold and diagnostic updates
+vim.g.editorconfig = true       -- enable built-in EditorConfig support in Neovim
+
 -- nvim-treesitter folding setup
-vim.opt.foldmethod = "expr"     -- use expression-based folding
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"     -- use nvim-treesitter to determine folds
-vim.opt.foldlevel = 99          -- start with all folds open
+vim.opt.foldmethod = "expr"                     -- use expression-based folding
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- use nvim-treesitter to determine folds
+vim.opt.foldlevel = 99                          -- start with all folds open
 
