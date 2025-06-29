@@ -11,71 +11,66 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- options
-local opts = { noremap = true, silent = false }
--- terminal options
-local term_opts = { silent = true }
--- Shorten function name
-local keymap = vim.keymap
-
 -- ========================= Insert Mode =========================
 -- Press jk fast to enter
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- ========================= Normal Mode =========================
--- * Tree Directory Navigation
-keymap.set("n", "<leader>ee", ":Neotree toggle<CR>", { desc = "open file tree" })
-keymap.set("n", "<leader>ef", ":Neotree filesystem<CR>", { desc = "open current file in file tree" })
--- keymap("n", "<leader>g", ":Neotree git_status<CR>", opts)   -- neo tree git status
+-- open netrw in split in tree view
+-- vim.keymap.set("n", "<leader>e", ":25Lex<CR>", {desc = "Toggle NetRW tree view"})
 
--- * Nvim Pane Navigation: Alt + hjkl
-keymap.set("n", "<M-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-keymap.set("n", "<M-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-keymap.set("n", "<M-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-keymap.set("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+-- tmux/vim Pane Navigation: Ctrl + hjkl (cross navigation)
+vim.keymap.set("n", "<C-h>", "<C-w>h", {desc = "Go to Left Window"})
+vim.keymap.set("n", "<C-j>", "<C-w>j", {desc = "Go to Lower Window"})
+vim.keymap.set("n", "<C-k>", "<C-w>k", {desc = "Go to Upper Window"})
+vim.keymap.set("n", "<C-l>", "<C-w>l", {desc = "Go to Right Window"})
 
--- * Nvim Pane Navigation: Alt + up/down/right/left
-keymap.set("n", "<M-Left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-keymap.set("n", "<M-Down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-keymap.set("n", "<M-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-keymap.set("n", "<M-Right>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+-- tmux/vim Pane Navigation: Ctrl + arrow keys (cross-navigation)
+vim.keymap.set("n", "<C-Left>", "<cmd>TmuxNavigateLeft<cr>", {desc = "Navigate Left"})
+vim.keymap.set("n", "<C-Down>", "<cmd>TmuxNavigateDown<cr>", {desc = "Navigate Down"})
+vim.keymap.set("n", "<C-Up>", "<cmd>TmuxNavigateUp<cr>", {desc = "Navigate Up"})
+vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<cr>", {desc = "Navigate Right"})
 
--- * Tmux Pane Navigation: Ctrl + up/down/right/left
-keymap.set("n", "<C-Left>", "TmuxNavigateLeft", { desc = "Navigate Left", remap = true })
-keymap.set("n", "<C-Down>", "TmuxNavigateDown", { desc = "Navigate Down", remap = true })
-keymap.set("n", "<C-Up>", "TmuxNavigateUp", { desc = "Navigate Up", remap = true })
-keymap.set("n", "<C-Right>", "TmuxNavigateRight", { desc = "Navigate Right", remap = true })
+-- Pane Creation
+vim.keymap.set("n", "<leader>sv", "<C-w>v", {desc = "Split window vertically"})
+vim.keymap.set("n", "<leader>sh", "<C-w>s", {desc = "Split window horizontally"})
+vim.keymap.set("n", "<leader>se", "<C-w>=", {desc = "Make split window width equal"})
+vim.keymap.set("n", "<leader>sx", ":close<CR>", {desc = "Close current split window"})
 
--- * Pane Creation
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically", remap = true})
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally", remap = true})
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make split window width equal", remap = true})
-keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close current split window", remap = true})
+-- Buffer Navigation
+vim.keymap.set("n", "<leader>bl", ":bnext<CR>", {desc = "Go to next buffer"})
+vim.keymap.set("n", "<leader>bh", ":bprevious<CR>", {desc = "Go to prev buffer"})
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", {desc = "Go to next buffer"})
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", {desc = "Go to prev buffer"})
+-- vim.keymap.set("n", "<leader>bx", ":bd<CR>", {desc = "Close current buffer"})
+vim.keymap.set("n", "<leader>bx", ":lua Snacks.bufdelete()<CR>", {desc = "Close current buffer"})
 
--- * Buffer Navigation
-keymap.set("n", "<leader>bl", ":bnext<CR>", { desc = "Go to next buffer", remap = true})
-keymap.set("n", "<leader>bh", ":bprevious<CR>", { desc = "Go to prev buffer", remap = true})
-keymap.set("n", "<leader>b0", ":bfirst<CR>", { desc = "Go to first buffer", remap = true})
-keymap.set("n", "<leader>b$", ":blast<CR>", { desc = "Go to last buffer", remap = true})
-keymap.set("n", "<leader>bx", ":bd<CR>", { desc = "Close current buffer", remap = true})
-keymap.set("n", "<leader>bp", ":BufferLineTogglePin<CR>", { desc = "Pin current buffer", remap = true})
+-- Tab Navigation
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", {desc = "Open new tab"})
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", {desc = "Close current tab"})
+vim.keymap.set("n", "<leader>tl", "<cmd>tabn<CR>", {desc = "Go to next tab"})
+vim.keymap.set("n", "<leader>th", "<cmd>tabp<CR>", {desc = "Go to previous tab"})
+vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", {desc = "Open current buffer in new tab"})
 
--- * Tab Navigation
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>tl", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<leader>th", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+-- Page Navigation
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {desc = "Move down half a page and centre it"})
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {desc = "Move up half a page and centre it"})
 
--- * Search
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights", remap = true })
+-- Search
+vim.keymap.set("n", "<leader>nh", ":nohl<CR>", {desc = "Clear search highlights"})
 
--- * Increment/Decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number", remap = true })
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number", remap = true })
+vim.keymap.set("n", "n", "nzzzv", {desc = "Search next item and centre page view"})
+vim.keymap.set("n", "N", "Nzzzv", {desc = "Search prev item and centre page view"})
+
+-- Increment/Decrement numbers
+vim.keymap.set("n", "<leader>+", "<C-a>", {desc = "Increment number"})
+vim.keymap.set("n", "<leader>-", "<C-x>", {desc = "Decrement number"})
+
+-- remove trailing spaces (needs plugin mini.trailspace)
+vim.keymap.set("n", "<leader>tt", ":lua MiniTrailspace.trim()<CR>", {desc = "Trim trailing spaces"})
+vim.keymap.set("n", "<leader>TT", ":lua MiniTrailspace.trim_last_lines()<CR>", {desc = "Trim last lines"})
 
 -- ========================= Visual Mode =========================
--- * Indentation:
-keymap.set("v", "<", "<gv", { desc = "Indent right", remap = true })
-keymap.set("v", ">", ">gv", { desc = "Indent left", remap = true })
+-- Indentation:
+vim.keymap.set("v", "<", "<gv", {desc = "Indent right"})
+vim.keymap.set("v", ">", ">gv", {desc = "Indent left"})

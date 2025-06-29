@@ -25,20 +25,20 @@ return {
 				gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, "Reset hunk")
 
-            -- staging and resetting buffer
+			-- staging and resetting buffer
 			keymap("n", "<leader>hS", gs.stage_buffer, "Stage buffer")
 			keymap("n", "<leader>hR", gs.reset_buffer, "Reset buffer")
 
 			keymap("n", "<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
 			keymap("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
 
-            -- git blame
+			-- git blame
 			keymap("n", "<leader>hb", function()
 				gs.blame_line({ full = true })
 			end, "Blame line")
 			keymap("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle line blame")
 
-            -- git diff
+			-- git diff
 			keymap("n", "<leader>hd", gs.diffthis, "Diff this")
 			keymap("n", "<leader>hD", function()
 				gs.diffthis("~")
@@ -51,13 +51,22 @@ return {
 	config = function()
         require("gitsigns").setup({
             signs = {
-				add          = { text = '┃' },
-				change       = { text = '┃' },
+                add          = { text = '┃' },
+                change       = { text = '┃' },
                 delete       = { text = '' },
-                topdelete    = { text = '‾' },
-                changedelete = { text = '~' },
-                untracked    = { text = '┆' },
+                topdelete    = { text = '' },  -- '‾'
+                changedelete = { text = '' },  -- '~'
+                untracked    = { text = '┃' },  -- '┆'
             },
+            signs_staged = {
+                add          = { text = '┃' },
+                change       = { text = '┃' },
+                delete       = { text = '' },
+                topdelete    = { text = '' },  -- '‾'
+                changedelete = { text = '' },  -- '~'
+                untracked    = { text = '┃' },  -- '┆'
+            },
+            signs_staged_enable = true,
             signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
             numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
             linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
@@ -89,6 +98,26 @@ return {
                 col = 1
             },
         })
+
+        -- Set custom colors for git signs
+        vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#90ee90", bg = "NONE" })          -- Light green
+        vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#87cefa", bg = "NONE" })       -- Light blue
+        vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff0000", bg = "NONE" })       -- Red
+        vim.api.nvim_set_hl(0, "GitSignsTopDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
+        vim.api.nvim_set_hl(0, "GitSignsChangeDelete", { fg = "#ff0000", bg = "NONE" }) -- Red
+        vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#006400", bg = "NONE" })    -- Dark green
+        
+        -- Ensure colors persist after colorscheme changes
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            pattern = "*",
+            callback = function()
+                vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#90ee90", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#87cefa", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff0000", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "GitSignsTopDelete", { fg = "#ff0000", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "GitSignsChangeDelete", { fg = "#ff0000", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#006400", bg = "NONE" })
+            end,
+        })
     end
 }
-

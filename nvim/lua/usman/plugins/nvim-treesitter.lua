@@ -18,28 +18,21 @@ return {
                 additional_vim_regex_highlighting = true,
             },
             -- enable indentation
-            indent = {
-                enable = true
-            },
+            indent = { enable = true },
             -- enable autotagging (w/ nvim-ts-autotag plugin)
-            autotag = {
-                enable = true,
-            },
+            autotag = { enable = true },
             -- ensure these language parsers are installed
             ensure_installed = {
-                -- "arduino",
+                "arduino",
                 "bash",
                 "bibtex",
                 "c",
                 "cmake",
                 "comment",
                 "cpp",
+                "csv",
                 "dockerfile",
                 "firrtl",
-                "git_config",
-                -- "git_rebase",
-                -- "gitattributes",
-                "gitcommit",
                 "gitignore",
                 "html",
                 "json",
@@ -54,8 +47,9 @@ return {
                 "rust",
                 "scala",
                 "ssh_config",
+                "tcl",
                 "toml",
-                "v",
+                "tmux",
                 "verilog",
                 "vhdl",
                 "vim",

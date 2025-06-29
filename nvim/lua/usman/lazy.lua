@@ -15,7 +15,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- source all plugins from plugins dir. invoke lazy package manager
--- require("lazy").setup({import = "usman.plugins"}, {
+-- require("lazy").setup({import = "usman.plugins"})
+-- require("lazy").setup({ import = "usman.plugins" }, {
 -- recognise the LSP directory
 require("lazy").setup({ { import = "usman.plugins" }, { import = "usman.plugins.lsp" } }, {
     checker = {
@@ -23,7 +24,7 @@ require("lazy").setup({ { import = "usman.plugins" }, { import = "usman.plugins.
         notify = false,
     },
     change_detection = {
-        notify = false,
+        notify = true,
     },
 })
 

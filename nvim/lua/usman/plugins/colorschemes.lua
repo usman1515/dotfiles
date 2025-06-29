@@ -1,6 +1,20 @@
 -- INFO: disable lazy loading. want theme to be always loaded
 -- default priority is 50
 
+-- return {
+--     "folke/tokyonight.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         -- colorschemes for the different styles. use one only
+--         vim.cmd("colorscheme tokyonight-storm") --dark
+--         -- vim.cmd("colorscheme tokyonight-night") --dark
+--         -- vim.cmd("colorscheme tokyonight-moon")  --dark
+--         -- vim.cmd("colorscheme tokyonight-day")   --light
+--     end,
+--     opts = {},
+-- }
+
 return {
     "bluz71/vim-nightfly-colors",
     lazy = false,
@@ -9,148 +23,47 @@ return {
         vim.g.nightflyCursorColor = true
         vim.g.nightflyItalics = true
         vim.g.nightflyNormalFloat = false
-        -- set global transparency
+        vim.g.nightflyTerminalColors = true
         vim.g.nightflyTransparent = false
+        vim.g.nightflyUndercurls = true
+        vim.g.nightflyVirtualTextColor = true
+        vim.g.nightflyWinSeparator = 2
+        vim.opt.fillchars = { horiz = '━', horizup = '┻', horizdown = '┳',
+            vert = '┃', vertleft = '┫', vertright = '┣', verthoriz = '╋',
+        }
         -- Apply the nightfly colorscheme
         vim.cmd("colorscheme nightfly")
     end,
-    opts = {},
+    opts = {}
 }
 
 -- return {
---     "bluz71/vim-moonfly-colors",
+--     "ellisonleao/gruvbox.nvim",
 --     lazy = false,
---     priority = 1000,
+--     priority = 1000 ,
 --     config = function()
---         vim.g.moonflyCursorColor = true
---         vim.g.moonflyItalics = true
---         vim.g.moonflyNormalFloat = false
---         -- set global transparency
---         vim.g.moonflyTransparent = false
---         -- Apply the moonfly colorscheme
---         vim.cmd("colorscheme moonfly")
+--         vim.g.terminal_colors = true   -- add neovim terminal colors
+--         vim.g.undercurl = true
+--         vim.g.underline = true
+--         vim.g.bold = true
+--         vim.g.italic = {
+--             strings = true,
+--             emphasis = true,
+--             comments = true,
+--             operators = false,
+--             folds = true,
+--         }
+--         vim.g.strikethrough = true
+--         vim.g.invert_selection = false
+--         vim.g.invert_signs = false
+--         vim.g.invert_tabline = false
+--         vim.g.inverse = true        -- invert background for search, diffs, statuslines and errors
+--         vim.g.contrast = ""         -- can be "hard", "soft" or empty string
+--         vim.g.palette_overrides = {}
+--         vim.g.overrides = {}
+--         vim.g.dim_inactive = false
+--         vim.g.transparent_mode = false
+--         vim.cmd("colorscheme gruvbox")
 --     end,
---     opts = {},
--- }
-
--- return {
---     "marko-cerovac/material.nvim",
---     lazy = false,
---     priority = 1000,
---     config = function()
---         -- available colors
---         -- vim.cmd("colorscheme material-darker")
---         -- vim.cmd("colorscheme material-lighter")
---         -- vim.cmd("colorscheme material-oceanic")
---         -- vim.cmd("colorscheme material-palenight")
---         vim.cmd("colorscheme material-deep-ocean")
---         require('material').setup({
---             contrast = {
---                 terminal = true, -- Enable contrast for the built-in terminal
---                 sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
---                 floating_windows = false, -- Enable contrast for floating windows
---                 cursor_line = false, -- Enable darker background for the cursor line
---                 lsp_virtual_text = false, -- Enable contrasted background for lsp virtual text
---                 non_current_windows = false, -- Enable contrasted background for non-current windows
---                 filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
---             },
---             styles = { -- Give comments style such as bold, italic, underline etc.
---                 comments = { [[ italic = true ]] },
---                 strings = { --[[ bold = true ]] },
---                 keywords = { --[[ underline = true ]] },
---                 functions = { [[ bold = true, undercurl = true ]] },
---                 variables = {},
---                 operators = {},
---                 types = {},
---             },
---             plugins = { -- Uncomment the plugins that you use to highlight them
---                 -- Available plugins:
---                 -- "coc",
---                 -- "colorful-winsep",
---                 -- "dap",
---                 -- "dashboard",
---                 -- "eyeliner",
---                 -- "fidget",
---                 -- "flash",
---                 "gitsigns",
---                 -- "harpoon",
---                 -- "hop",
---                 -- "illuminate",
---                 "indent-blankline",
---                 -- "lspsaga",
---                 -- "mini",
---                 -- "neogit",
---                 -- "neotest",
---                 "neo-tree",
---                 -- "neorg",
---                 -- "noice",
---                 "nvim-cmp",
---                 -- "nvim-navic",
---                 -- "nvim-tree",
---                 "nvim-web-devicons",
---                 "rainbow-delimiters",
---                 -- "sneak",
---                 "telescope",
---                 "trouble",
---                 "which-key",
---                 -- "nvim-notify",
---             },
---             high_visibility = {
---                 lighter = false,    -- Enable higher contrast text for lighter style
---                 darker = false      -- Enable higher contrast text for darker style
---             },
---             lualine_style = "stealth",  -- Lualine style ( can be 'stealth' or 'default' )
---         })
---     end,
---     opts = {},
--- }
-
--- return {
---     "folke/tokyonight.nvim",
---     lazy = false,
---     priority = 1000,
---     config = function()
---         -- colorschemes for the different styles. use one only
---         -- vim.cmd("colorscheme tokyonight-storm") --dark
---         vim.cmd("colorscheme tokyonight-night") --dark
---         -- vim.cmd("colorscheme tokyonight-moon")  --dark
---         -- vim.cmd("colorscheme tokyonight-day")   --light
---     end,
---     opts = {},
--- }
-
--- return {
---     "EdenEast/nightfox.nvim",
---     lazy = false,
---     priority = 1000,
---     config = function()
---         -- vim.cmd("colorscheme dayfox")   -- light
---         -- vim.cmd("colorscheme dawnfox")  -- light
---         -- vim.cmd("colorscheme nightfox") -- dark
---         -- vim.cmd("colorscheme duskfox")  -- dark
---         -- vim.cmd("colorscheme nordfox")  -- dark
---         -- vim.cmd("colorscheme terafox")  -- dark
---         vim.cmd("colorscheme carbonfox")    -- dark
---     end,
---     opts = {},
--- }
-
--- return {
---     "sainnhe/sonokai",
---     lazy = false,
---     priority = 1000,
---     config = function()
---         -- vim.api.nvim_set_var('sonokai_style', 'default')    -- colorscheme 1
---         -- vim.api.nvim_set_var('sonokai_style', 'atlantis')   -- colorscheme 2
---         vim.api.nvim_set_var('sonokai_style', 'andromeda')  -- colorscheme 3
---         -- vim.api.nvim_set_var('sonokai_style', 'shusia')     -- colorscheme 4
---         -- vim.api.nvim_set_var('sonokai_style', 'maia')       -- colorscheme 5
---         -- vim.api.nvim_set_var('sonokai_style', 'espresso')   -- colorscheme 6
---         -- vim.api.nvim_set_var('sonokai_style', 'maia')       -- colorscheme 7
---         vim.cmd("colorscheme sonokai")                      -- set theme
---         vim.api.nvim_set_var('sonokai_better_performance', 1)   -- improve performance
---         vim.api.nvim_set_var('sonokai_enable_italic', 1) -- enable italic
---         vim.api.nvim_set_var('sonokai_transparent_background', 2) -- transparency
---     end,
---     opts = {},
+--     opts = {}
 -- }
