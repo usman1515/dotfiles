@@ -52,8 +52,15 @@ vim.keymap.set("n", "<leader>tl", "<cmd>tabn<CR>", {desc = "Go to next tab"})
 vim.keymap.set("n", "<leader>th", "<cmd>tabp<CR>", {desc = "Go to previous tab"})
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", {desc = "Open current buffer in new tab"})
 
+-- Page Navigation
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {desc = "Move down half a page and centre it"})
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {desc = "Move up half a page and centre it"})
+
 -- Search
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", {desc = "Clear search highlights"})
+
+vim.keymap.set("n", "n", "nzzzv", {desc = "Search next item and centre page view"})
+vim.keymap.set("n", "N", "Nzzzv", {desc = "Search prev item and centre page view"})
 
 -- Increment/Decrement numbers
 vim.keymap.set("n", "<leader>+", "<C-a>", {desc = "Increment number"})
