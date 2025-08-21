@@ -1,0 +1,371 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+# ==================== Keybindings
+
+# ---------- launching programs
+# set mod key. Use Mod1 for Alt.
+set $mod Mod4
+
+# terminal
+set $term alacritty
+bindsym $mod+Return exec --no-startup-id $term
+
+# rofi-wayland
+set $rofi_cmd rofi -terminal '$term'
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+bindsym $mod+d exec $menu
+
+# flameshot
+# better lock screen
+# rob control
+# media player controls
+# change keyboard language
+
+# synaptics touchPad
+
+input "2:14:SynPS/2_Synaptics_TouchPad" {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+# ---------- window manipulation
+
+# home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# kill focused window
+bindsym $mod+q kill
+
+# move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split orientation
+
+# You can "split" the current object of your focus with $mod+b or $mod+v, for horizontal and
+# vertical splits respectively.
+
+# split in horizontal orientation
+bindsym $mod+b splith
+# split in vertical orientation
+bindsym $mod+v splitv
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space focus mode_toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space floating toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# move focused window to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show scratchpad window
+bindsym $mod+minus scratchpad show
+
+# resize window
+bindsym $mod+r mode "resize"
+
+# resize window (can also use the mouse for that)
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# screenlock
+bindsym $mod+Shift+x exec swaylock
+
+# move workspace to primary display
+
+# screenshots in files
+
+# screenshots in clipboards
+
+# ==================== Workspaces
+
+# switch to workspace with urgent window automatically
+
+# workspace back and forth
+
+# workspaces names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# toggle between last two workspaces
+bindsym $mod+Tab workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload sway config
+bindsym $mod+Shift+c reload
+
+# restart sway
+bindsym $mod+Shift+r restart
+
+# exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# ---------- assign workspaces to monitors
+# use wdisplays instead of arandr
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# assign name to each monitor
+set $monitor1 HDMI-A-1
+set $monitor2 eDP-1
+
+# ---------- Setup monitor display layout (arandr)
+output $monitor1 resolution 1920x1080 position 0 0
+output $monitor2 resolution 1920x1080 position 1920 0
+
+# can specify multiple outputs to a workspace
+workspace $ws1 output $monitor1
+workspace $ws2 output $monitor1
+workspace $ws3 output $monitor1
+workspace $ws4 output $monitor1
+workspace $ws5 output $monitor1
+workspace $ws6 output $monitor1
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor2
+workspace $ws9 output $monitor2
+workspace $ws10 output $monitor2
+
+# ---------- assign programs to workspaces
+
+# swaymsg -t get_tree
+# This will print a long JSON tree of all windows.
+# Search for the name of your program (e.g., "Chromium") and look for the "app_id" field.
+
+# workspace 1 - server
+assign [app_id="Com.cisco.secureclient.gui"] $ws1
+assign [app_id="Vivado"] $ws1
+
+# workspace 2 - coding
+assign [class="VSCodium"] $ws2
+
+# workspace 3 - email and chat clients
+assign [app_id="net.thunderbird.Thunderbird"] $ws3
+assign [class="Slack"] $ws3
+
+# workspace 4 - internet browsers
+assign [class="Chromium-browser"] $ws4
+assign [app_id="org.mozilla.firefox"] $ws4
+assign [app_id="librewolf"] $ws4
+
+# workspace 5 - files
+assign [app_id="nemo"] $ws5
+assign [app_id="thunar"] $ws5
+
+# workspace 6
+# workspace 7
+# workspace 8
+# workspace 9
+assign [app_id="org.keepassxc.KeePassXC"] $ws9
+
+# workspace 10
+
+# ==================== Startup / Autolaunch Programs
+
+# This will lock your screen after 300 seconds of inactivity, then turn off your displays after
+# another 300 seconds, and turn your screens back on when resumed. It will also lock your screen
+# before your computer goes to sleep.
+
+exec swayidle -w \
+        timeout 300 'swaylock -f -c 000000' \
+        timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+        before-sleep 'swaylock -f -c 000000'
+
+# Use pactl to adjust volume in Pipewire
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# use playerctl for media keys in Pipewire
+# bindsym XF86AudioNext exec --no-startup-id playerctl next
+# bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+# bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+# bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+
+# ---------- programs
+# emails and chats
+exec --no-startup-id thunderbird
+
+# browsers
+exec --no-startup-id firefox
+
+# text editors
+exec --no-startup-id VSCodium
+
+# others
+
+# ---------- scripts
+
+# ==================== Background Wallpaper (swaybg)
+# INFO: Link: https://github.com/orangci/walls-catppuccin-mocha.git
+
+# Set a different wallpaper for each monitor
+exec swaybg -o HDMI-A-1 -i ~/wallpapers-catppuccin/bunnies-road.png -m fill
+exec swaybg -o eDP-1 -i ~/wallpapers-catppuccin/cabin-3.png -m fill
+
+# ==================== Window Outlines
+# set gap# set gaps
+gaps inner 8
+gaps outer 2
+
+# only enable gaps on a workspace when there is at least one container
+smart_gaps off
+
+# move window title to center
+title_align center
+
+# enable window icons for all windows
+
+# enable window icons for all windows with extra horizontal padding
+
+# smart borders
+smart_borders off
+
+# set window borders
+default_border pixel 3
+hide_edge_borders none
+
+# set window title
+# for_window [class="^.*"] border normal
+
+# ==================== Fonts
+# Set the font for all window titles
+font pango:CaskaydiaCove Nerd Font Mono 8
+
+# ==================== Colorschemes
+# transparency colors
+# Link: https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+
+set $transpareny_100    #ff
+set $transpareny_90     #e6
+set $transpareny_80     #cc
+set $transpareny_70     #b3
+set $transpareny_60     #99
+set $transpareny_50     #80
+set $transpareny_40     #66
+set $transpareny_30     #4d
+set $transpareny_20     #33
+set $transpareny_10     #1a
+set $transpareny_0      #00
+
+# colors
+# set $rosewater #f5e0dc
+set $color1 #6272A4
+set $color2 #F8F8F2
+set $color3 #44475A
+set $color4 #282A36
+set $color5 #BFBFBF
+set $color6 #FF5555
+
+# Concatenate the two color values to create transparent colors
+# set $combined_rosewater $rosewater$transpareny_10
+
+# class                 border  bground text    indicator child_border
+client.focused          $color1 $color1 $color2 $color1   $color1
+client.focused_inactive $color3 $color3 $color2 $color3   $color3
+client.unfocused        $color4 $color4 $color5 $color4   $color4
+client.urgent           $color3 $color6 $color2 $color6   $color6
+client.placeholder      $color4 $color4 $color2 $color4   $color4
+client.background       $color2
+
+
+
+# look for configuration files in
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
