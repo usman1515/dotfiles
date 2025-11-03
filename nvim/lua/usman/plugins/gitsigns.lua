@@ -1,55 +1,79 @@
 return {
-	"lewis6991/gitsigns.nvim",
-	lazy = false,
-	event = { "BufReadPre", "BufNewFile" },
-	opts = {
-		on_attach = function(bufnr)
-			local gs = package.loaded.gitsigns
-
-			-- keymapping function
-			local function keymap(mode, l, r, desc)
-				vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
-			end
-
-			-- navigating between hunks
-			keymap("n", "]h", gs.next_hunk, "Next Hunk")
-			keymap("n", "[h", gs.prev_hunk, "Prev Hunk")
-
-			-- staging and unstaging hunks
-			keymap("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
-			keymap("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
-			keymap("v", "<leader>hs", function()
-				gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end, "Stage hunk")
-			keymap("v", "<leader>hr", function()
-				gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end, "Reset hunk")
-
-			-- staging and resetting buffer
-			keymap("n", "<leader>hS", gs.stage_buffer, "Stage buffer")
-			keymap("n", "<leader>hR", gs.reset_buffer, "Reset buffer")
-
-			keymap("n", "<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
-			keymap("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
-
-			-- git blame
-			keymap("n", "<leader>hb", function()
-				gs.blame_line({ full = true })
-			end, "Blame line")
-			keymap("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle line blame")
-
-			-- git diff
-			keymap("n", "<leader>hd", gs.diffthis, "Diff this")
-			keymap("n", "<leader>hD", function()
-				gs.diffthis("~")
-			end, "Diff this ~")
-
-			-- Text object
-			keymap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")
-		end,
-	},
-	config = function()
+    "lewis6991/gitsigns.nvim",
+    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
         require("gitsigns").setup({
+
+            -- INFO: keymaps
+            on_attach = function(bufnr)
+
+                local gitsigns = require('gitsigns')
+
+                -- keymapping function
+                local function map(mode, l, r, opts)
+                    opts = opts or {}
+                    opts.buffer = bufnr
+                    vim.keymap.set(mode, l, r, opts)
+                end
+
+                -- navigating between hunks
+                map('n', ']c', function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({']c', bang = true})
+                    else
+                        gitsigns.nav_hunk('next')
+                    end
+                end)
+                map('n', '[c', function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({'[c', bang = true})
+                    else
+                        gitsigns.nav_hunk('prev')
+                    end
+                end)
+
+                -- staging and unstaging hunks
+                map('n', '<leader>hs', gitsigns.stage_hunk)
+                map('n', '<leader>hr', gitsigns.reset_hunk)
+
+                map('v', '<leader>hs', function()
+                    gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+                end)
+                map('v', '<leader>hr', function()
+                    gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+                end)
+
+                -- staging and resetting buffer
+                map('n', '<leader>hS', gitsigns.stage_buffer)
+                map('n', '<leader>hR', gitsigns.reset_buffer)
+                map('n', '<leader>hp', gitsigns.preview_hunk)
+                map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+
+                -- git blame
+                map('n', '<leader>hb', function()
+                    gitsigns.blame_line({ full = true })
+                end)
+
+                -- git diff
+                map('n', '<leader>hd', gitsigns.diffthis)
+
+                map('n', '<leader>hD', function()
+                    gitsigns.diffthis('~')
+                end)
+
+                map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+                map('n', '<leader>hq', gitsigns.setqflist)
+
+                -- Toggles
+                map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+                map('n', '<leader>tw', gitsigns.toggle_word_diff)
+
+                -- Text object
+                map({'o', 'x'}, 'ih', gitsigns.select_hunk)
+            end,
+
+            -- INFO: configs
             signs = {
                 add          = { text = '┃' },
                 change       = { text = '┃' },
@@ -106,7 +130,7 @@ return {
         vim.api.nvim_set_hl(0, "GitSignsTopDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
         vim.api.nvim_set_hl(0, "GitSignsChangeDelete", { fg = "#ff0000", bg = "NONE" }) -- Red
         vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#006400", bg = "NONE" })    -- Dark green
-        
+
         -- Ensure colors persist after colorscheme changes
         vim.api.nvim_create_autocmd("ColorScheme", {
             pattern = "*",
