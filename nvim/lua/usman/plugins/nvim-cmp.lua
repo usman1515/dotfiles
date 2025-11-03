@@ -1,27 +1,31 @@
 return {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+	"hrsh7th/nvim-cmp",
+	event = "InsertEnter",
     branch = "main", -- fix for deprecated functions coming in nvim 0.13
-    dependencies = {
-        "hrsh7th/cmp-buffer", -- source for text in buffer
-        "hrsh7th/cmp-path", -- source for file system paths
-        {
-            "L3MON4D3/LuaSnip",
-            -- follow latest release.
-            version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-            -- install jsregexp (optional!).
-            build = "make install_jsregexp",
-        },
-        "saadparwaiz1/cmp_luasnip", -- autocompletion
-        "rafamadriz/friendly-snippets", -- snippets
-        "nvim-treesitter/nvim-treesitter",
-        "onsails/lspkind.nvim", -- vs-code pictograms
-    },
-    config = function()
-        local cmp = require("cmp")
-        -- local luasnip = require("luasnip")
+	dependencies = {
+		"hrsh7th/cmp-buffer",   -- source for text in buffer
+		"hrsh7th/cmp-path",     -- source for file system paths
+		"hrsh7th/cmp-cmdline",  -- source for vim's cmdline
+		{
+			"L3MON4D3/LuaSnip",
+			-- follow latest release.
+			version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+			-- install jsregexp (optional!).
+			build = "make install_jsregexp",
+		},
+		"saadparwaiz1/cmp_luasnip",         -- for autocompletion
+		"rafamadriz/friendly-snippets",     -- useful snippets
+        "nvim-treesitter/nvim-treesitter",  -- syntax highlighting
+		"onsails/lspkind.nvim",             -- vs-code like pictograms
+	},
+	config = function()
+		-- require cmp plugin
+		local cmp = require("cmp")
+		-- require luasnip plugin for code snippets
+		-- local luasnip = require("luasnip")
         local has_luasnip, luasnip = pcall(require, 'luasnip')
-        local lspkind = require("lspkind")
+		-- require lspkind for vscode like pictograms
+		local lspkind = require("lspkind")
 
         -- helper function to convert key combinations for nvim to understand
         local rhs = function(keys)
@@ -29,33 +33,35 @@ return {
         end
 
         -- custom icons for LSP suggestions
-        lsp_kinds = {
-            Text = "󰉿",
-            Method = "󰆧",
-            Function = "󰊕",
-            Constructor = "",
-            Field = "󰜢",
-            Variable = "󰀫",
-            Class = "󰠱",
-            Interface = "",
-            Module = "",
-            Property = "󰜢",
-            Unit = "󰑭",
-            Value = "󰎠",
-            Enum = "",
-            Keyword = "󰌋",
-            Snippet = "",
-            Color = "󰏘",
-            File = "󰈙",
-            Reference = "󰈇",
-            Folder = "󰉋",
-            EnumMember = "",
-            Constant = "󰏿",
-            Struct = "󰙅",
-            Event = "",
-            Operator = "󰆕",
-            TypeParameter = "",
-        }
+        lsp_kinds = {}
+        -- lsp_kinds = {
+        --     Text = "󰉿",
+        --     Method = "󰆧",
+        --     Function = "󰊕",
+        --     Constructor = "",
+        --     Field = "󰜢",
+        --     Variable = "󰀫",
+        --     Class = "󰠱",
+        --     Interface = "",
+        --     Module = "",
+        --     Property = "󰜢",
+        --     Unit = "󰑭",
+        --     Value = "󰎠",
+        --     Enum = "",
+        --     Keyword = "󰌋",
+        --     Snippet = "",
+        --     Color = "󰏘",
+        --     File = "󰈙",
+        --     Reference = "󰈇",
+        --     Folder = "󰉋",
+        --     EnumMember = "",
+        --     Constant = "󰏿",
+        --     Struct = "󰙅",
+        --     Event = "",
+        --     Operator = "󰆕",
+        --     TypeParameter = "",
+        -- }
+
         -- Returns the current column number.
         local column = function()
             local _line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -188,8 +194,8 @@ return {
                 -- checks how many characters will be different after the cursor position if we replace?
                 local diff_after = math.max(0, entry.replace_range['end'].character + 1) - entry.context.cursor.col
 
-                -- does the text that will be replaced after the cursor match the suffix
-                -- of the `newText` to be inserted ? if not, then `Insert` instead.
+                -- does the text that will be replaced after the cursor match the suffix of the
+                -- `newText` to be inserted ? if not, then `Insert` instead.
                 if entry.context.cursor_after_line:sub(1, diff_after) ~= newText:sub(-diff_after) then
                     behavior = cmp.ConfirmBehavior.Insert
                 end
@@ -197,9 +203,10 @@ return {
             cmp.confirm({ select = true, behavior = behavior })
         end
 
-        -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-        require("luasnip.loaders.from_vscode").lazy_load()
+		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+		require("luasnip.loaders.from_vscode").lazy_load()
 
+        -- configure nvim cmp
         cmp.setup({
             experimental = {
                 -- HACK: experimenting with ghost text
@@ -208,6 +215,7 @@ return {
             },
             completion = {
                 completeopt = "menu,menuone,noinsert",
+				-- completeopt = "menu,menuone,preview,noselect",
             },
             window = {
                 documentation = {
@@ -224,16 +232,17 @@ return {
                 end,
             },
             -- autocompletion sources
+            -- NOTE: order of arrangement is important since that decides priority.
             sources = cmp.config.sources({
-                { name = "luasnip" }, -- snippets
+                { name = "nvim_lsp"},   -- built in LSP
+                { name = "luasnip" },   -- snippets
+                { name = "buffer" },    -- text within current buffer
+                { name = "path" },      -- file system paths
                 { name = "lazydev" },
-                { name = "nvim_lsp"},
-                { name = "buffer" }, -- text within current buffer
-                { name = "path" }, -- file system paths
                 { name = "tailwindcss-colorizer-cmp" },
             }),
 
-            -- NOTE: Experimenting with Customized Mappings ! --
+            -- NOTE: Experimenting with Customized Mappings
             mapping = cmp.mapping.preset.insert({
                 -- ['<BS>'] = cmp.mapping(function(_fallback)
                 --     smart_bs()
@@ -248,8 +257,6 @@ return {
                 ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-j>'] = cmp.mapping(select_next_item),
                 ['<C-k>'] = cmp.mapping(select_prev_item),
-                ['<C-n>'] = cmp.mapping(select_next_item),
-                ['<C-p>'] = cmp.mapping(select_prev_item),
                 ['<Down>'] = cmp.mapping(select_next_item),
                 ['<Up>'] = cmp.mapping(select_prev_item),
 
@@ -303,12 +310,13 @@ return {
                     end
                 end, { 'i', 's' }),
             }),
+
             -- setup lspkind for vscode pictograms in autocompletion dropdown menu
             formatting = {
                 format = function(entry, vim_item)
                     -- Add custom lsp_kinds icons
                     vim_item.kind = string.format('%s %s', lsp_kinds[vim_item.kind] or '', vim_item.kind)
-
+                    -- vim_item.kind = string.format('%s', lsp_kinds[vim_item.kind] or '', vim_item.kind)
 
                     -- add menu tags (e.g., [Buffer], [LSP])
                     vim_item.menu = ({
@@ -331,12 +339,6 @@ return {
 
                     return vim_item
                 end,
-                -- format = lspkind.cmp_format({
-                --         maxwidth = 30,
-                --         ellipsis_char = "...",
-                --         before = require("tailwindcss-colorizer-cmp").formatter
-                -- }),
-                -- format = require("tailwindcss-colorizer-cmp").formatter
             },
         })
 
@@ -371,5 +373,6 @@ return {
         })
         -- ! Ghost text stuff ! --
 
-    end,
+	end,
 }
+
