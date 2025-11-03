@@ -66,13 +66,6 @@ return {
                 scroll_up = '<C-u>',
             },
         })
-        require("mini.comment").setup({             -- code commenting
-            hooks = {
-                pre = function()
-                    local ft = vim.bo.filetype
-                    if ft == "verilog" or ft == "systemverilog" or ft == "arduino" then
-                        vim.bo.commentstring = "// %s"
-                    end
                 end,
             },
         })
