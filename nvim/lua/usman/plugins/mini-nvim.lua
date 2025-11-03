@@ -128,8 +128,25 @@ return {
             end,
         })
         require('mini.icons').setup({})             -- icon set
-        require('mini.indentscope').setup({})       -- animated vertical tab line
+        -- require('mini.indentscope').setup({})       -- animated vertical tab line
         require('mini.pairs').setup({})             -- bracket autopairing
+
+        -- require('mini.sessions').setup({            -- session management
+        --     directory = vim.fn.stdpath('data') .. '/sessions/',
+        --     autoload_mode = 'disabled',  -- We'll manually save/load sessions via keymaps
+        --     autoread = true,
+        -- })
+        -- -- Save the current session
+        -- vim.keymap.set('n', '<leader>ws', function()
+        --     local session_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+        --     require('mini.sessions').write(session_name)
+        -- end, { desc = 'Save session for current project' })
+        -- -- Load the last session
+        -- vim.keymap.set('n', '<leader>wr', function()
+        --     local session_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+        --     require('mini.sessions').read(session_name)
+        -- end, { desc = 'Load session for current project' })
+
         require('mini.surround').setup({            -- add, remove, replace delimiters
             -- Add custom surroundings to be used on top of builtin ones. For more information with
             -- examples, see `:h MiniSurround.config`.
