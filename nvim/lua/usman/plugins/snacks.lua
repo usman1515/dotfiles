@@ -49,16 +49,6 @@ return {
             enabled = true,
             replace_netrw = true, -- replace netrw with snacks explorer
         },
-        git = {                             -- git utilities
-            enabled = true,
-            -- your git configuration comes here
-            width = 0.6,
-            height = 0.6,
-            border = "rounded",
-            title = " Git Blame ",
-            title_pos = "center",
-            ft = "git",
-        },
         image = {                           --  view images in nvim snacks.picker
             enabled = true,
             formats = {
@@ -185,31 +175,13 @@ return {
             exclude = { "latex" },
         },
         scope = { enabled = true },         -- scope detection based on treesitter
-        statuscolumn = { enabled = true },
-        toggle = {                          -- toggle kepmaps
-            enabled = true,
-            -- your toggle configuration comes here
-            map = vim.keymap.set, -- keymap.set function to use
-            which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
-            notify = true, -- show a notification when toggling
-            -- icons for enabled/disabled states
-            icon = {
-                enabled = " ",
-                disabled = " ",
-            },
-            -- colors for enabled/disabled states
-            color = {
-                enabled = "green",
-                disabled = "yellow",
-            },
-        },
     },
     -- optional = true,
     keys = {
         -- INFO: essential keymaps
-        { "<leader>space>", function() Snacks.picker.files() end, desc = "Find Files" },
-        { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+        -- { "<leader><space>", function() Snacks.picker.files() end, desc = "Find Files" },
+        -- { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        -- { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
         { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
         { "<leader>e", function() Snacks.picker.explorer() end, desc = "Toggle File Tree Explorer" },
         -- find
@@ -222,8 +194,8 @@ return {
         { "<leader>st", function () Snacks.picker.todo_comments({ keywords = { "TODO", "HACK", "WARNING", "BUG", "NOTE", "INFO", "PERF", "ERROR" } }) end, desc = "Todo Comment Tags" },
         { "<leader>sT", function() Snacks.picker.todo_comments() end, desc = "Todo" },
         -- git
-        { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
-        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+        -- { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+        -- { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
         -- grep
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
         { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
