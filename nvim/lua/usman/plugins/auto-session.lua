@@ -4,16 +4,24 @@ return {
         local auto_session = require("auto-session")
 
         auto_session.setup({
-            -- enable/disable auto resotore of sessions
-            auto_restore_enabled = false,
+            auto_restore = false, -- don't auto-restore on startup
+            auto_save = true,     -- automatically save session on exit
             -- dont restore session in these dirs
-            auto_session_suppress_dirs = { "~/", "~/Dev/", "~/Downloads", "~/Documents", "~/Desktop/" },
+            suppressed_dirs = {
+                vim.fn.expand("~"),
+                vim.fn.expand("~/Dev"),
+                vim.fn.expand("~/Downloads"),
+                vim.fn.expand("~/Documents"),
+                vim.fn.expand("~/Desktop"),
+            },
         })
 
-        local keymap = vim.keymap
+        -- filetype and highlighting work correctly after a session is restored
+        vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
-        -- keymaps for session management
-        keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
-        keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" }) -- save workspace session for current working directory
+        -- INFO: keymaps for session management
+        local keymap = vim.keymap
+        keymap.set("n", "<leader>wr", "<cmd>AutoSession restore<CR>", { desc = "Restore session for cwd" })
+        keymap.set("n", "<leader>ws", "<cmd>AutoSession save<CR>", { desc = "Save session for cwd" })
     end,
 }
