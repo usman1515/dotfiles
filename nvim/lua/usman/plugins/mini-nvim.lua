@@ -66,10 +66,67 @@ return {
                 scroll_up = '<C-u>',
             },
         })
-                end,
+        require('mini.cursorword').setup({})        -- automatic highlighting of word under cursor
+        require('mini.diff').setup({                -- git integration for buffers and hunks
+            -- Options for how hunks are visualized
+            view = {
+                -- Visualization style. Possible values are 'sign' and 'number'.
+                -- Default: 'number' if line numbers are enabled, 'sign' otherwise.
+                style = vim.go.number and 'number' and 'sign',
+                -- Signs shown in the sign column
+                signs = { add = '▒', change = '▒', delete = '▒' },      -- mini.diff symbols
+                -- signs = { add = '┃', change = '┃', delete = '' },   -- gitsigns symbols
+                -- Priority of used visualization extmarks
+                priority = 199,
+            },
+            -- Source(s) for how reference text is computed/updated/etc
+            -- Uses content from Git index by default
+            source = nil,
+            -- Delays (in ms) defining asynchronous processes
+            delay = {
+                -- How much to wait before update following every text change
+                text_change = 200,
+            },
+            -- Module mappings. Use `''` (empty string) to disable one.
+            -- Replaced default mini.diff keymaps with gitsigns.nvim keymaps.
+            mappings = {
+                -- Apply hunks inside a visual/operator region
+                apply       = '<leader>hs',
+                -- Reset hunks inside a visual/operator region
+                reset       = '<leader>hr',
+                -- Hunk range textobject to be used inside operator
+                textobject  = 'ih',
+                -- Go to hunk range in corresponding direction
+                goto_first  = '[C',
+                goto_prev   = '[c',
+                goto_next   = ']c',
+                goto_last   = ']C',
+            },
+            -- Various options
+            options = {
+                -- Diff algorithm. See `:h vim.diff()`.
+                algorithm = 'histogram',
+                -- Whether to use "indent heuristic". See `:h vim.diff()`.
+                indent_heuristic = true,
+                -- The amount of second-stage diff to align lines
+                linematch = 60,
+                -- Whether to wrap around edges during hunk navigation
+                wrap_goto = false,
             },
         })
-        require('mini.cursorword').setup({})        -- automatic highlighting of word under cursor
+        -- mini.diff - custom colors for MiniDiff signs (similar to Gitsigns)
+        vim.api.nvim_set_hl(0, "MiniDiffSignAdd", { fg = "#90ee90", bg = "NONE" })       -- Light green
+        vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "#87cefa", bg = "NONE" })    -- Light blue
+        vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
+        -- mini.diff - ensure colors persist for MiniDiff after color scheme changes
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            pattern = "*",
+            callback = function()
+                vim.api.nvim_set_hl(0, "MiniDiffSignAdd", { fg = "#90ee90", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "#87cefa", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "#ff0000", bg = "NONE" })
+            end,
+        })
         require('mini.icons').setup({})             -- icon set
         require('mini.indentscope').setup({})       -- animated vertical tab line
         require('mini.pairs').setup({})             -- bracket autopairing
