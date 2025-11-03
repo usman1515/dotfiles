@@ -24,7 +24,8 @@ return {
             window     = { suffix = 'w', options = {} },
             yank       = { suffix = 'y', options = {} },
         })
-        require('mini.bufremove').setup({})     -- close buffers while preserving layout
+        -- require('mini.bufremove').setup({})     -- close buffers while preserving layout
+        -- use mini.clue or snacks.which-key
         require('mini.clue').setup({            -- show next keypress clues
             -- Array of extra clues to show
             clues = {},
