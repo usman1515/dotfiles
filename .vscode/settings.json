@@ -1,20 +1,70 @@
 {
-    "editor.fontSize": 13,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.bracketPairColorization.enabled": true,
-    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-    "editor.comments.insertSpace": true,
-    "editor.detectIndentation": true,
-    "editor.lineHeight": 0,
-    "editor.minimap.enabled": false,
-    "terminal.integrated.fontSize": 12,
-    "terminal.integrated.lineHeight": 1,
-    "terminal.integrated.shellIntegration.enabled": true,
-    "files.trimTrailingWhitespace": true,
-    "markdown.preview.fontSize": 10,
-    "markdown.preview.lineHeight": 1.0,
-    "markdown-preview-github-styles.colorTheme": "light",
-    "markdownShiki.theme": "min-light",
-    "json.maxItemsComputed": 100000
+    // --- Indentation and Tab Settings ---
+    "vim.tabstop": 4,                       // set number of spaces for a tab (Vim's display width)
+    "vim.softtabstop": 4,                   // how many spaces is a tab in insert mode (Vim's backspace/tab behavior)
+    "vim.expandtab": true,                  // coverts tabs to spaces (Vim setting)
+    "editor.tabSize": 4,                    // Corresponds to vim.opt.shiftwidth (spaces for each level of indentation)
+    "editor.insertSpaces": true,            // Ensures tabs are converted to spaces (required for expandtab)
+    "editor.autoIndent": "full",            // Best way to achieve autoindent, smartindent, and cindent in VS Code
+
+    // --- Wrapping and Line Length Settings ---
+    "vim.textwidth": 100,                   // enable line wrapping after N char (Used by Vim commands like gq)
+    "vim.wrapmargin": 2,                    // move to the next line N char before margin (Used with textwidth for auto-wrap)
+    "editor.wordWrapColumn": 100,           // The specific column (100) to wrap at (Corresponds to textwidth/wrap)
+
+    // --- Search Settings (Mostly VSCodeVim) ---
+    "vim.incsearch": true,                  // show word matches live
+    "vim.ignorecase": true,                 // ignore case when searching
+    "vim.smartcase": true,                  // assumes you want case sensitive
+    "vim.hlsearch": false,                  // prevents persistent search highlighting
+
+    // --- Appearance Settings ---
+    "vim.relativenumber": true,             // relative line numbres (VSCodeVim setting for hybrid display)
+    "vim.signcolumn": "yes",                // show sign colum so that text doesnt shift
+    "vim.cmdheight": 2,                     // command height
+    "vim.scrolloff": 10,                    // start scrolling when you hit the last 10 lines
+    "editor.rulers": [100],                 // Corresponds to vim.opt.colorcolumn = "100" (Visual vertical line)
+    "editor.renderLineHighlight": "all",    // Corresponds to vim.opt.cursorline = true
+
+    // --- Behaviour and Utility Settings ---
+    "vim.allowAggressiveTextEditing": true, // Closest to vim.opt.hidden = true (Allows unsaved buffers)
+    "vim.disableSwapfile": true,            // dont create swap files
+    "vim.splitright": true,                 // new panes added on right
+    "vim.splitbelow": true,                 // new panes added on bottom
+    "vim.mouseSupport": true,               // enable the mouse in all modes
+    "vim.useSystemClipboard": true,         // allow copy pasting inside and outside vim (Corresponds to unnamedplus)
+
+    // --- Core VS Code Settings ---
+    "files.encoding": "utf8",               // Corresponds to fileencoding/encoding
+    "terminal.integrated.bellStyle": "none",// turn off bells
+    "editor.quickSuggestionsDelay": 50,     // reduce delay before triggering diagnostics/suggestions (closest to updatetime)
+    "editor.foldingMaximumRegions": 9999,   // Sets max folding level high (closest to foldlevel = 99)
+{
+    // --- Leader Key Configuration ---
+    "vim.leader": "<space>",
+    "vim.localleader": "<space>",
+
+    // --- Insert Mode Key Bindings ---
+    // Maps pressing "j" then "k" quickly to the Escape key
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"],
+            "commands": [],
+            "silent": true,
+            "when": "neovim.editor.active",
+            "fullCommand": "exitInsertMode"
+        }
+    ],
+    // --- Visual Mode Key Bindings ---
+    "vim.visualModeKeyBindings": [
+        // --- Buffer Navigation ---
+        // --- Tab Navigation ---
+        // --- Pane Creation ---
+        // --- Search ---
+        // --- Tree ---
+        // --- Remove trailing spaces ---
+
+    ],
 }
+

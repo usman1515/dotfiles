@@ -26,7 +26,10 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install -y lazygit
 # tmux
 sudo dnf install -y tmux
-```
+
+npm install -g yarn
+cd ~/.local/share/nvim/site/pack/core/opt/markdown-preview.nvim/app
+yarn install```
 
 **MacOS**
 ```bash
