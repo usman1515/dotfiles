@@ -5,7 +5,9 @@ return {
     "lervag/vimtex",
     lazy = false,     -- Load VimTeX immediately
     init = function()
-        vim.g.vimtex_view_method = "zathura"
+        -- vim.g.vimtex_view_method = "zathura"    -- for Linux
+        vim.g.vimtex_view_method = "sioyek"     -- for Mac
+        vim.g.vimtex_mainfile = "main.tex"
         -- Configure VimTeX to use latexmk
         vim.g.vimtex_compiler_latexmk = {
             executable = "latexmk",

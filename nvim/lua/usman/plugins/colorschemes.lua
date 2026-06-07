@@ -38,6 +38,28 @@ return {
 }
 
 -- return {
+--     "bluz71/vim-moonfly-colors",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         vim.g.moonflyCursorColor = true
+--         vim.g.moonflyItalics = true
+--         vim.g.moonflyNormalFloat = false
+--         vim.g.moonflyTerminalColors = true
+--         vim.g.moonflyTransparent = false
+--         vim.g.moonflyUndercurls = true
+--         vim.g.moonflyVirtualTextColor = true
+--         vim.g.moonflyWinSeparator = 2
+--         vim.opt.fillchars = { horiz = '━', horizup = '┻', horizdown = '┳',
+--             vert = '┃', vertleft = '┫', vertright = '┣', verthoriz = '╋',
+--         }
+--         -- Apply the moonfly colorscheme
+--         vim.cmd("colorscheme moonfly")
+--     end,
+--     opts = {}
+-- }
+
+-- return {
 --     "ellisonleao/gruvbox.nvim",
 --     lazy = false,
 --     priority = 1000 ,
