@@ -15,7 +15,7 @@ end
 -- INFO: mini.bracketed - navigate using square brackets
 require('mini.bracketed').setup({
     buffer     = { suffix = 'b', options = {} },
-    comment    = { suffix = 'c', options = {} },
+    -- comment    = { suffix = 'c', options = {} },
     conflict   = { suffix = 'x', options = {} },
     diagnostic = { suffix = 'd', options = {} },
     file       = { suffix = 'f', options = {} },
@@ -79,66 +79,66 @@ require('mini.clue').setup({
 require('mini.cursorword').setup({})
 
 -- INFO: mini.diff - git integration for buffers and hunks
-require('mini.diff').setup({
-    -- Options for how hunks are visualized
-    view = {
-        -- Visualization style. Possible values are 'sign' and 'number'.
-        -- Default: 'number' if line numbers are enabled, 'sign' otherwise.
-        style = vim.go.number and 'number' and 'sign',
-        -- Signs shown in the sign column
-        signs = { add = '▒', change = '▒', delete = '' },      -- mini.diff symbols
-        -- signs = { add = '┃', change = '┃', delete = '' },   -- gitsigns symbols
-        -- Priority of used visualization extmarks
-        priority = 199,
-    },
-    -- Source(s) for how reference text is computed/updated/etc
-    -- Uses content from Git index by default
-    source = nil,
-    -- Delays (in ms) defining asynchronous processes
-    delay = {
-        -- How much to wait before update following every text change
-        text_change = 200,
-    },
-    -- Module mappings. Use `''` (empty string) to disable one.
-    -- Replaced default mini.diff keymaps with gitsigns.nvim keymaps.
-    mappings = {
-        -- Apply hunks inside a visual/operator region
-        apply       = '<leader>hs',
-        -- Reset hunks inside a visual/operator region
-        reset       = '<leader>hr',
-        -- Hunk range textobject to be used inside operator
-        textobject  = 'ih',
-        -- Go to hunk range in corresponding direction
-        goto_first  = '[C',
-        goto_prev   = '[c',
-        goto_next   = ']c',
-        goto_last   = ']C',
-    },
-    -- Various options
-    options = {
-        -- Diff algorithm. See `:h vim.diff()`.
-        algorithm = 'histogram',
-        -- Whether to use "indent heuristic". See `:h vim.diff()`.
-        indent_heuristic = true,
-        -- The amount of second-stage diff to align lines
-        linematch = 60,
-        -- Whether to wrap around edges during hunk navigation
-        wrap_goto = false,
-    },
-})
-
--- mini.diff - custom colors for MiniDiff signs (similar to Gitsigns)
-local function set_minidiff_colors()
-    vim.api.nvim_set_hl(0, "MiniDiffSignAdd",    { fg = "#90ee90", bg = "NONE" })    -- Light green
-    vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "#87cefa", bg = "NONE" })    -- Light blue
-    vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
-end
-set_minidiff_colors()
--- mini.diff - ensure colors persist for MiniDiff after color scheme changes
-vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = set_minidiff_colors,
-})
+-- require('mini.diff').setup({
+--     -- Options for how hunks are visualized
+--     view = {
+--         -- Visualization style. Possible values are 'sign' and 'number'.
+--         -- Default: 'number' if line numbers are enabled, 'sign' otherwise.
+--         style = vim.go.number and 'number' and 'sign',
+--         -- Signs shown in the sign column
+--         -- signs = { add = '▒', change = '▒', delete = '' },      -- mini.diff symbols
+--         signs = { add = '┃', change = '┃', delete = '' },   -- gitsigns symbols
+--         -- Priority of used visualization extmarks
+--         priority = 199,
+--     },
+--     -- Source(s) for how reference text is computed/updated/etc
+--     -- Uses content from Git index by default
+--     source = nil,
+--     -- Delays (in ms) defining asynchronous processes
+--     delay = {
+--         -- How much to wait before update following every text change
+--         text_change = 200,
+--     },
+--     -- Module mappings. Use `''` (empty string) to disable one.
+--     -- Replaced default mini.diff keymaps with gitsigns.nvim keymaps.
+--     mappings = {
+--         -- Apply hunks inside a visual/operator region
+--         apply       = '<leader>hs',
+--         -- Reset hunks inside a visual/operator region
+--         reset       = '<leader>hr',
+--         -- Hunk range textobject to be used inside operator
+--         textobject  = 'ih',
+--         -- Go to hunk range in corresponding direction
+--         goto_first  = '[C',
+--         goto_prev   = '[c',
+--         goto_next   = ']c',
+--         goto_last   = ']C',
+--     },
+--     -- Various options
+--     options = {
+--         -- Diff algorithm. See `:h vim.diff()`.
+--         algorithm = 'histogram',
+--         -- Whether to use "indent heuristic". See `:h vim.diff()`.
+--         indent_heuristic = true,
+--         -- The amount of second-stage diff to align lines
+--         linematch = 60,
+--         -- Whether to wrap around edges during hunk navigation
+--         wrap_goto = false,
+--     },
+-- })
+--
+-- -- mini.diff - custom colors for MiniDiff signs (similar to Gitsigns)
+-- local function set_minidiff_colors()
+--     vim.api.nvim_set_hl(0, "MiniDiffSignAdd",    { fg = "#90ee90", bg = "NONE" })    -- Light green
+--     vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "#87cefa", bg = "NONE" })    -- Light blue
+--     vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "#ff0000", bg = "NONE" })    -- Red
+-- end
+-- set_minidiff_colors()
+-- -- mini.diff - ensure colors persist for MiniDiff after color scheme changes
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--     pattern = "*",
+--     callback = set_minidiff_colors,
+-- })
 
 -- INFO: mini.icons - icon set
 require('mini.icons').setup({})
@@ -163,6 +163,60 @@ require('mini.pairs').setup({})
 --     local session_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 --     require('mini.sessions').read(session_name)
 -- end, { desc = 'Load session for current project' })
+
+-- INFO: mini.starter - fast and flexible start screen
+local ok_starter, starter = pcall(require, 'mini.starter')
+if not ok_starter then
+    vim.notify("mini.starter not ready yet — restart Neovim after install", vim.log.levels.WARN)
+    return
+end
+
+starter.setup({
+    -- No need to copy this inside `setup()`. Will be used automatically. Whether to open starter
+    -- buffer on VimEnter. Not opened if Neovim was started with intent to show something else.
+    autoopen = true,
+    -- Whether to evaluate action of single active item
+    evaluate_single = true,
+    -- Items to be displayed. Should be an array with the following elements:
+    items = {
+        starter.sections.builtin_actions(),
+        starter.sections.recent_files(10, false),   -- recent files (global)
+        starter.sections.recent_files(10, true),    -- recent files (current dir)
+        -- Use this if you set up 'mini.sessions'
+        -- starter.sections.sessions(5, true)
+    },
+    -- Header to be displayed before items. Converted to single string via `tostring` (use `\n` to
+    -- display several lines).
+    header = table.concat({
+        "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
+        "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
+        "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
+        "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+        "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
+        "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
+        -- "▗▖  ▗▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖▗▄▄▄▖▗▖  ▗▖",
+        -- "▐▛▚▖▐▌▐▌   ▐▌ ▐▌▐▌  ▐▌  █  ▐▛▚▞▜▌",
+        -- "▐▌ ▝▜▌▐▛▀▀▘▐▌ ▐▌▐▌  ▐▌  █  ▐▌  ▐▌",
+        -- "▐▌  ▐▌▐▙▄▄▖▝▚▄▞▘ ▝▚▞▘ ▗▄█▄▖▐▌  ▐▌",
+    }, "\n"),
+    -- Footer to be displayed after items. Converted to single string via `tostring` (use `\n` to
+    -- display several lines).
+    footer = nil,
+    -- Array of functions to be applied consecutively to initial content. Each function should take
+    -- and return content for 'Starter' buffer (see |mini.starter| and |MiniStarter.content| for
+    -- more details).
+    content_hooks = {
+        starter.gen_hook.adding_bullet(),
+        starter.gen_hook.indexing('all', { 'Builtin actions' }),
+        starter.gen_hook.aligning('center', 'center'),  -- ADD: center horizontally and vertically
+        starter.gen_hook.padding(3, 2),
+    },
+    -- Characters to update query. Each character will have special buffer mapping overriding your
+    -- global ones. Be careful to not add `:` as it allows you to go into command mode.
+    query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
+    -- Whether to disable showing non-error feedback
+    silent = false,
+})
 
 -- INFO: mini.surround - add, remove, replace delimiters
 require('mini.surround').setup({
