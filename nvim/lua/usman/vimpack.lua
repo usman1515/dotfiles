@@ -25,7 +25,7 @@ require("usman.plugins.vimtex")
 require("usman.plugins.nvim-treesitter")
 require("usman.plugins.nvim-cmp")
 require("usman.plugins.lsp.mason")
-require("usman.plugins.lsp.mason")
+require("usman.plugins.lsp.nvim-lspconfig")
 
 
 
