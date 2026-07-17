@@ -35,25 +35,25 @@ end
 -- end
 
 -- INFO: colorscheme: vim-moonfly-colors
-vim.pack.add({ "https://github.com/bluz71/vim-moonfly-colors" })
-local ok = pcall(function()
-    vim.g.moonflyCursorColor = true
-    vim.g.moonflyItalics = true
-    vim.g.moonflyNormalFloat = false
-    vim.g.moonflyTerminalColors = true
-    vim.g.moonflyTransparent = false
-    vim.g.moonflyUndercurls = true
-    vim.g.moonflyVirtualTextColor = true
-    vim.g.moonflyWinSeparator = 2
-    vim.opt.fillchars = {
-        horiz = '━', horizup = '┻', horizdown = '┳',
-        vert = '┃', vertleft = '┫', vertright = '┣', verthoriz = '╋',
-    }
-    -- vim.cmd("colorscheme moonfly")
-end)
-if not ok then
-    vim.notify("moonfly not ready yet — restart Neovim after install", vim.log.levels.WARN)
-end
+-- vim.pack.add({ "https://github.com/bluz71/vim-moonfly-colors" })
+-- local ok = pcall(function()
+--     vim.g.moonflyCursorColor = true
+--     vim.g.moonflyItalics = true
+--     vim.g.moonflyNormalFloat = false
+--     vim.g.moonflyTerminalColors = true
+--     vim.g.moonflyTransparent = false
+--     vim.g.moonflyUndercurls = true
+--     vim.g.moonflyVirtualTextColor = true
+--     vim.g.moonflyWinSeparator = 2
+--     vim.opt.fillchars = {
+--         horiz = '━', horizup = '┻', horizdown = '┳',
+--         vert = '┃', vertleft = '┫', vertright = '┣', verthoriz = '╋',
+--     }
+--     -- vim.cmd("colorscheme moonfly")
+-- end)
+-- if not ok then
+--     vim.notify("moonfly not ready yet — restart Neovim after install", vim.log.levels.WARN)
+-- end
 
 -- INFO: colorscheme: gruvbox
 -- vim.pack.add({ "https://github.com/ellisonleao/gruvbox.nvim" })
