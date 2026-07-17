@@ -3,7 +3,7 @@
 -- INFO: call all plugins here
 
 -- core
-require("usman.plugins.colorscheme")
+require("usman.plugins.colorschemes")
 require("usman.plugins.init")
 require("usman.plugins.vim-tmux-navigator")
 
@@ -20,6 +20,7 @@ require("usman.plugins.md-preview")
 require("usman.plugins.rainbow-delimiters")
 require("usman.plugins.substitute")
 require("usman.plugins.vimtex")
+require("usman.plugins.pack-ui")
 
 -- autocompletion, LSPs, linters, formatters
 require("usman.plugins.nvim-treesitter")
