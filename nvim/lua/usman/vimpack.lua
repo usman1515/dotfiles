@@ -3,7 +3,7 @@
 -- INFO: call all plugins here
 
 -- core
-require("usman.plugins.colorscheme")
+require("usman.plugins.colorschemes")
 require("usman.plugins.init")
 require("usman.plugins.vim-tmux-navigator")
 
@@ -13,19 +13,22 @@ require("usman.plugins.mini-nvim")
 require("usman.plugins.snacks")
 require("usman.plugins.flash")
 require("usman.plugins.git-blame")
+require("usman.plugins.git-conflict-nvim")
 require("usman.plugins.gitsigns")
 require("usman.plugins.indent-blankline")
 require("usman.plugins.lualine")
-require("usman.plugins.md-preview")
+-- require("usman.plugins.md-preview")
+require("usman.plugins.live-preview")
 require("usman.plugins.rainbow-delimiters")
 require("usman.plugins.substitute")
 require("usman.plugins.vimtex")
+-- require("usman.plugins.pack-ui")
 
 -- autocompletion, LSPs, linters, formatters
 require("usman.plugins.nvim-treesitter")
 require("usman.plugins.nvim-cmp")
 require("usman.plugins.lsp.mason")
-require("usman.plugins.lsp.mason")
+require("usman.plugins.lsp.nvim-lspconfig")
 
 
 
