@@ -286,7 +286,7 @@ cmp.setup({
         { name = "buffer" },    -- text within current buffer
         { name = "path" },      -- file system paths
         { name = "lazydev" },
-        { name = "tailwindcss-colorizer-cmp" },
+        -- { name = "tailwindcss-colorizer-cmp" },
     }),
 
     -- experimenting with Customized Mappings
@@ -405,9 +405,9 @@ cmp.setup({
                 ellipsis_char = "...",
             })(entry, vim_item)
 
-            if entry.source.name == "nvim_lsp" then
-                vim_item = colorizer(entry, vim_item)
-            end
+            -- if entry.source.name == "nvim_lsp" then
+            --     vim_item = colorizer(entry, vim_item)
+            -- end
 
             return vim_item
         end,
