@@ -265,8 +265,7 @@ vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { 
 vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
 vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
 
-
--- -- Other
+-- Other
 -- { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
 -- { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
 -- { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },

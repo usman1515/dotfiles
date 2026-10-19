@@ -17,12 +17,10 @@ require("usman.plugins.git-conflict-nvim")
 require("usman.plugins.gitsigns")
 require("usman.plugins.indent-blankline")
 require("usman.plugins.lualine")
--- require("usman.plugins.md-preview")
 require("usman.plugins.live-preview")
 require("usman.plugins.rainbow-delimiters")
 require("usman.plugins.substitute")
 require("usman.plugins.vimtex")
--- require("usman.plugins.pack-ui")
 
 -- autocompletion, LSPs, linters, formatters
 require("usman.plugins.nvim-treesitter")
