@@ -1,8 +1,7 @@
 vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/windwp/nvim-ts-autotag" },
 })
-
 
 
 -- run TSUpdate after install
@@ -22,15 +21,6 @@ end
 
 -- import nvim-treesitter plugin and configure treesitter
 treesitter.setup({
-    -- enable syntax highlighting
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = true,
-    },
-    -- enable indentation
-    indent = { enable = true },
-    -- enable autotagging (w/ nvim-ts-autotag plugin)
-    autotag = { enable = true },
     -- ensure these language parsers are installed
     ensure_installed = {
         "bash",
@@ -58,14 +48,14 @@ treesitter.setup({
         "yaml",
     },
     auto_install = true,
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-        },
-    },
 })
 
+-- highlighting + indent are now enabled per-buffer, not via setup()
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*", -- or list specific filetypes
+    callback = function()
+        pcall(vim.treesitter.start)
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+})
