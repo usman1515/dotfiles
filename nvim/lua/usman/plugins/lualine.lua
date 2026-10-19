@@ -11,7 +11,7 @@ end
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = "powerline_dark", -- "powerline", -- "nightfly", -- auto
+        theme = "catppuccin-mocha", -- "powerline_dark", -- "tokyonight", -- "gruvbox-dark", -- "powerline", -- "nightfly", -- auto
         -- component_separators = { left = "|", right = "|" },
         -- section_separators = { left = "", right = "" },
         component_separators = { left = '', right = ''},
@@ -34,7 +34,7 @@ lualine.setup({
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {{'branch', icon = ''}, 'diff', 'diagnostics'},
+        lualine_b = {{'branch', icon = ''}, 'diff', 'diagnostics'},
         -- lualine_c = {{'filename', path=1}, {require('auto-session.lib').current_session_name}},
         lualine_c = {{'filename', path=1}},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
