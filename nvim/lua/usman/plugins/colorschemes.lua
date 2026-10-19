@@ -23,16 +23,37 @@ if not ok then
 end
 
 -- INFO: colorscheme: tokyonight
--- vim.pack.add({ "https://github.com/folke/tokyonight.nvim" })
--- local ok = pcall(function()
---     vim.cmd("colorscheme tokyonight-storm")
---     -- vim.cmd("colorscheme tokyonight-night")
---     -- vim.cmd("colorscheme tokyonight-moon")
---     -- vim.cmd("colorscheme tokyonight-day")
--- end)
--- if not ok then
---     vim.notify("tokyonight not ready yet — restart Neovim after install", vim.log.levels.WARN)
--- end
+vim.pack.add({ "https://github.com/folke/tokyonight.nvim" })
+require("tokyonight").setup({
+    -- style = "storm",
+    style = "night",
+    -- style = "moon",
+    -- style = "day",
+    transparent = false,
+    styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+    },
+    on_highlights = function(hl, c)
+        local prompt = "#2d3149"
+        hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg_dark }
+        hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopePromptNormal = { bg = prompt }
+        hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
+        hl.TelescopePromptTitle = { bg = prompt, fg = prompt }
+        hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
+    end,
+})
+local ok = pcall(function()
+    -- vim.cmd("colorscheme tokyonight-storm")
+    -- vim.cmd("colorscheme tokyonight-night")
+    -- vim.cmd("colorscheme tokyonight-moon")
+    -- vim.cmd("colorscheme tokyonight-day")
+end)
+if not ok then
+    vim.notify("tokyonight not ready yet — restart Neovim after install", vim.log.levels.WARN)
+end
 -- INFO: colorscheme: catppuccin
 vim.pack.add({ { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } })
 local ok = pcall(function()
