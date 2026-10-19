@@ -42,7 +42,8 @@ vim.opt.completeopt = "menuone,noinsert,noselect" -- autocompletion setting
 vim.opt.hidden = true
 vim.opt.errorbells = false      -- turn off bells
 vim.opt.swapfile = false        -- dont create swap files
-vim.opt.backup = false          -- dont create bakup files
+vim.opt.backup = false          -- dont create backup files
+vim.opt.writebackup = false     -- dotn write to the backup file
 vim.opt.undofile = true         -- make an undo file available
 vim.opt.splitright = true       -- new panes added on right
 vim.opt.splitbelow = true       -- new panes added on bottom
@@ -59,8 +60,9 @@ vim.opt.encoding = "UTF-8"      -- internal buffer encoding
 vim.opt.showmode = true         -- show visual, edit, command mode
 vim.opt.showcmd = true          -- show commands
 
-
-vim.opt.undodir = vim.fn.expand("~/.vim/undodir")   -- undo file dir
+vim.opt.undodir = vim.fn.expand("~/.nvim/undodir")   -- undo file dir
+vim.opt.directory = vim.fn.expand("state") .. "/swap"
+vim.opt.backupdir = vim.fn.expand("state") .. "/backup"
 vim.opt.backspace = "indent,eol,start"              --  backspace key behaviour
 vim.opt.clipboard:append("unnamedplus")             -- allow copy pasting inside and outside vim
 
